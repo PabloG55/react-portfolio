@@ -41,7 +41,7 @@ export default function Contact() {
                             <a href="https://www.linkedin.com/in/pablogarces5" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform duration-300 hover:-translate-y-1"><FaLinkedin /></a>
                             <a href="https://github.com/PabloG55" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform duration-300 hover:-translate-y-1"><FaGithub /></a>
                         </div>
-                        <a href="/src/images/my-cv.pdf" download className="btn inline-block mt-10 px-8 py-3 bg-blue text-white rounded hover:bg-blue-900 transition duration-300 shadow-lg">Download CV</a>
+                        <a href="/images/my-cv.pdf" download className="btn inline-block mt-10 px-8 py-3 bg-blue text-white rounded hover:bg-blue-900 transition duration-300 shadow-lg">Download CV</a>
                     </div>
                     <div className="md:w-1/2">
                         <h2 className="text-2xl font-semibold text-white mb-6">Send a Message</h2>

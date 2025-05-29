@@ -6,7 +6,7 @@ export default function About() {
             <div className="container mx-auto px-6">
                 <div className="flex flex-col md:flex-row items-start gap-12">
                     <div className="md:w-1/3">
-                        <img src="/src/images/user.png" alt="Profile" className="rounded-xl w-full" />
+                        <img src="/images/user.png" alt="Profile" className="rounded-xl w-full" />
                     </div>
                     <div className="md:w-2/3">
                         <h1 className="text-4xl font-bold text-white mb-6">About Me</h1>
