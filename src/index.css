@@ -1,0 +1,67 @@
+/* 1) Tailwind core layers */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 2) Base-layer overrides */
+@layer base {
+    /* Smooth scrolling */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Hero background: top-aligned, covers, no repeat */
+    header {
+        @apply bg-cover bg-top bg-no-repeat;
+    }
+}
+
+/* 3) Component-level styles */
+@layer components {
+    /* — Slick Carousel dots — */
+    .slick-dots {
+        @apply flex justify-center gap-2 mt-6;
+    }
+    .slick-dots li button:before {
+        @apply text-xs text-gray-400 opacity-75;
+    }
+    .slick-dots li.slick-active button:before {
+        @apply text-blue opacity-100 !important;
+    }
+
+    /* — Custom Prev/Next arrows — */
+    .custom-arrow {
+        @apply absolute top-1/2 transform -translate-y-1/2
+        text-white bg-gray-800 rounded-full p-2
+        cursor-pointer transition-opacity duration-200;
+    }
+    .custom-arrow:hover {
+        @apply opacity-80;
+    }
+    /* adjust these if your arrows are too far in/out */
+    .slick-prev.custom-arrow { left: 1rem; }
+    .slick-next.custom-arrow { right: 1rem; }
+
+    /* — Tab links underline — */
+    .tab-links {
+        @apply relative pb-1 text-white hover:text-blue-900 transition-colors duration-200;
+    }
+    .tab-links.active-link::after {
+        content: '';
+        @apply absolute left-0 bottom-0 bg-blue-500 h-1 w-1/2 transition-all duration-300;
+    }
+
+    /* — Optional: modal blur backdrop — */
+    /* To use: add className="modal-blur-bg" on your React Modal overlay */
+    .modal-blur-bg {
+        backdrop-filter: blur(5px);
+    }
+}
+
+/* 4) Utility-level helpers */
+@layer utilities {
+    /* offset your anchor targets under a fixed navbar */
+    .scroll-offset {
+        scroll-margin-top: 4rem; /* match your nav height */
+    }
+}
