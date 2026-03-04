@@ -17,7 +17,6 @@ export default function ParticleNetwork() {
     // Use colors that match the site theme (Tailwind blue-500, purple-500, gray-400)
     const colors = [
       { r: 59, g: 130, b: 246 }, // Blue
-      { r: 168, g: 85, b: 247 }, // Purple
       { r: 156, g: 163, b: 175 }, // Gray
     ];
 
@@ -91,8 +90,8 @@ export default function ParticleNetwork() {
 
       // Smoothly interpolate currentMouse toward actual mouse position
       // The lower the multiplier, the "softer" and more delayed the movement
-      currentMouse.x += (mouse.x - currentMouse.x) * 0.05;
-      currentMouse.y += (mouse.y - currentMouse.y) * 0.05;
+      currentMouse.x += (mouse.x - currentMouse.x) * 0.015;
+      currentMouse.y += (mouse.y - currentMouse.y) * 0.015;
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
