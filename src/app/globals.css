@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3b82f6;
+  --color-primary-glow: rgba(59, 130, 246, 0.5);
+  --color-background-light: #ffffff;
+  --color-background-dark: #050505;
+  --color-surface-light: #f8fafc;
+  --color-surface-dark: #0a0a0a;
+  --color-border-light: #e2e8f0;
+  --color-border-dark: #1f1f1f;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --shadow-glow-sm: 0 0 10px -2px var(--tw-shadow-color);
+  --shadow-glow-md: 0 0 20px -4px var(--tw-shadow-color);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050505;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  .code-editor {
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+  }
+  .line-number {
+    color: #484f58;
+    user-select: none;
+    text-align: right;
+    padding-right: 1rem;
+    min-width: 2.5rem;
+  }
+  .glow-border {
+    position: relative;
+  }
+  .glow-border::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    border-radius: inherit;
+    background: linear-gradient(
+      45deg,
+      rgba(59, 130, 246, 0.1),
+      rgba(168, 85, 247, 0.1)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .glow-border:hover::after {
+    opacity: 1;
+  }
+}
