@@ -23,3 +23,11 @@ dist-ssr
 *.sln
 *.sw?
 .env
+.env*.local
+
+# Next.js build output
+.next/
+out/
+
+# Backup from previous Vite project
+_backup/
