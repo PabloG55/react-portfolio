@@ -57,8 +57,10 @@ export default function ParticleNetwork() {
       particles.push(createParticle());
     }
 
-    // Default mouse out of bounds
+    // Actual mouse coordinates (snaps instantly)
     const mouse = { x: -1000, y: -1000 };
+    // Interpolated mouse coordinates (trails smoothly)
+    const currentMouse = { x: -1000, y: -1000 };
 
     const handleMouseMove = (e: MouseEvent) => {
       // Get mouse position relative to the canvas if scrolled
@@ -87,13 +89,18 @@ export default function ParticleNetwork() {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
+      // Smoothly interpolate currentMouse toward actual mouse position
+      // The lower the multiplier, the "softer" and more delayed the movement
+      currentMouse.x += (mouse.x - currentMouse.x) * 0.05;
+      currentMouse.y += (mouse.y - currentMouse.y) * 0.05;
+
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         updateParticle(p);
 
-        // Calculate distance to mouse
-        const dxMouse = mouse.x - p.x;
-        const dyMouse = mouse.y - p.y;
+        // Calculate distance to smoothly trailing mouse
+        const dxMouse = currentMouse.x - p.x;
+        const dyMouse = currentMouse.y - p.y;
         const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
 
         // Only draw interactions if the particle is near the mouse
@@ -115,9 +122,9 @@ export default function ParticleNetwork() {
             const dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist < 150) {
-              // Ensure p2 is also near the mouse to avoid drawing lines to invisible particles
-              const dxMouse2 = mouse.x - p2.x;
-              const dyMouse2 = mouse.y - p2.y;
+              // Ensure p2 is also near the trailing mouse
+              const dxMouse2 = currentMouse.x - p2.x;
+              const dyMouse2 = currentMouse.y - p2.y;
               const distMouse2 = Math.sqrt(
                 dxMouse2 * dxMouse2 + dyMouse2 * dyMouse2,
               );
