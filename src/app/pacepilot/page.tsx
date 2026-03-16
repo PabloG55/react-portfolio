@@ -61,7 +61,7 @@ export default function PacePilotPrivacy() {
 
         <section>
           <h2 className={styles.h2}>4. Data Retention and Deletion</h2>
-          <p>We retain your data as long as your account is active. You can delete your account and all associated data at any time through the &quot;Delete Account&quot; button in the Profile settings of the app.</p>
+          <p>We retain your data as long as your account is active. You can delete your account and all associated data at any time through the &quot;Delete Account&quot; button in the Profile settings of the app. Alternatively, you can visit our <a href="/pacepilot/deletion" style={{ color: '#00D1FF', textDecoration: 'underline' }}>Data Deletion Request</a> page for manual deletion options.</p>
         </section>
 
         <section>
