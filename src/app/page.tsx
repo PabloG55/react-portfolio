@@ -331,282 +331,119 @@ export default function Home() {
                 </div>
                 <div className="flex">
                   <span className="line-number">2</span>{" "}
-                  <span className="text-[#7ee787]">"languages"</span>
+                  <span className="text-[#7ee787] ml-4">"languages"</span>:{" "}
+                  <span className="text-gray-500">[</span>
                 </div>
                 <div className="flex">
                   <span className="line-number">3</span>{" "}
-                  <span className="text-gray-500">:</span>{" "}
+                  <span className="ml-8">
+                    <span className="text-[#a5d6ff]">"Java"</span>
+                    <span className="text-gray-500">,</span>{" "}
+                    <span className="text-[#a5d6ff]">"Python"</span>
+                    <span className="text-gray-500">,</span>{" "}
+                    <span className="text-[#a5d6ff]">"JavaScript/TypeScript"</span>
+                    <span className="text-gray-500">,</span>{" "}
+                    <span className="text-[#a5d6ff]">"C"</span>
+                    <span className="text-gray-500">,</span>{" "}
+                  </span>
                 </div>
                 <div className="flex">
                   <span className="line-number">4</span>{" "}
-                  <span className="text-gray-500">[</span>
+                  <span className="ml-8">
+                    <span className="text-[#a5d6ff]">"C++"</span>
+                    <span className="text-gray-500">,</span>{" "}
+                    <span className="text-[#a5d6ff]">"SQL"</span>
+                    <span className="text-gray-500">,</span>{" "}
+                    <span className="text-[#a5d6ff]">"Dart"</span>
+                    <span className="text-gray-500">,</span>{" "}
+                    <span className="text-[#a5d6ff]">"HTML/CSS"</span>
+                  </span>
                 </div>
                 <div className="flex">
                   <span className="line-number">5</span>{" "}
-                  <span className="text-[#a5d6ff]">"Java"</span>
+                  <span className="text-gray-500 ml-4">],</span>
                 </div>
                 <div className="flex">
                   <span className="line-number">6</span>{" "}
-                  <span className="text-gray-500">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">7</span>{" "}
-                  <span className="text-[#a5d6ff]">"Python"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">8</span>{" "}
-                  <span className="text-gray-500">,</span>
-                </div>
-                <div className="flex text-sm md:text-base">
-                  <span className="line-number">9</span>{" "}
-                  <span className="text-[#a5d6ff]">"JavaScript/TypeScript"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">10</span>{" "}
-                  <span className="text-gray-500">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">11</span>{" "}
-                  <span className="text-[#a5d6ff]">"C"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">12</span>{" "}
-                  <span className="text-gray-500">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">13</span>{" "}
-                  <span className="text-[#a5d6ff]">"C++"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">14</span>{" "}
-                  <span className="text-gray-500">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">15</span>{" "}
-                  <span className="text-[#a5d6ff]">"SQL"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">16</span>{" "}
-                  <span className="text-gray-500">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">17</span>{" "}
-                  <span className="text-[#a5d6ff]">"Dart"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">18</span>{" "}
-                  <span className="text-gray-500">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">19</span>{" "}
-                  <span className="text-[#a5d6ff]">"HTML/CSS"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">20</span>{" "}
-                  <span className="text-gray-500">],</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">21</span>{" "}
-                  <span className="text-[#7ee787]">"frameworks"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">22</span>{" "}
-                  <span className="text-gray-500">:</span>{" "}
-                </div>
-                <div className="flex">
-                  <span className="line-number">23</span>{" "}
+                  <span className="text-[#7ee787] ml-4">"frameworks"</span>:{" "}
                   <span className="text-gray-500">{"{"}</span>
                 </div>
                 <div className="flex">
-                  <span className="line-number">24</span>{" "}
-                  <span className="text-[#7ee787] pl-4">"frontend"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">25</span>{" "}
-                  <span className="text-gray-500 pl-4">:</span>{" "}
-                </div>
-                <div className="flex">
-                  <span className="line-number">26</span>{" "}
-                  <span className="text-gray-500 pl-4">[</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">27</span>{" "}
-                  <span className="text-[#a5d6ff] pl-4">"Next.js"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">28</span>{" "}
-                  <span className="text-gray-500 pl-4">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">29</span>{" "}
-                  <span className="text-[#a5d6ff] pl-4">"React.js"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">30</span>{" "}
-                  <span className="text-gray-500 pl-4">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">31</span>{" "}
-                  <span className="text-[#a5d6ff] pl-4">"Tailwind CSS"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">32</span>{" "}
-                  <span className="text-gray-500 pl-4">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">33</span>{" "}
-                  <span className="text-[#a5d6ff] pl-4">"JavaFX"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">34</span>{" "}
-                  <span className="text-gray-500 pl-4">],</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">35</span>{" "}
-                  <span className="text-[#7ee787] pl-4">"backend"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">36</span>{" "}
-                  <span className="text-gray-500 pl-4">:</span>{" "}
-                </div>
-                <div className="flex">
-                  <span className="line-number">37</span>{" "}
-                  <span className="text-gray-500 pl-4">[</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">38</span>{" "}
-                  <span className="text-[#a5d6ff] pl-4">"Spring Boot"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">39</span>{" "}
-                  <span className="text-gray-500 pl-4">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">40</span>{" "}
-                  <span className="text-[#a5d6ff] pl-4">"Node.js"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">41</span>{" "}
-                  <span className="text-gray-500 pl-4">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">42</span>{" "}
-                  <span className="text-[#a5d6ff] pl-4">"Flask"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">43</span>{" "}
-                  <span className="text-gray-500 pl-4">]</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">44</span>{" "}
-                  <span className="text-gray-500">{"}"},</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">45</span>{" "}
-                  <span className="text-[#7ee787]">"infrastructure"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">46</span>{" "}
-                  <span className="text-gray-500">:</span>{" "}
-                </div>
-                <div className="flex">
-                  <span className="line-number">47</span>{" "}
+                  <span className="line-number">7</span>{" "}
+                  <span className="text-[#7ee787] ml-8">"frontend"</span>:{" "}
                   <span className="text-gray-500">[</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">48</span>{" "}
-                  <span className="text-[#a5d6ff]">"Supabase"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">49</span>{" "}
-                  <span className="text-gray-500">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">50</span>{" "}
-                  <span className="text-[#a5d6ff]">"PostgreSQL"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">51</span>{" "}
-                  <span className="text-gray-500">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">52</span>{" "}
-                  <span className="text-[#a5d6ff]">"MongoDB"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">53</span>{" "}
-                  <span className="text-gray-500">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">54</span>{" "}
-                  <span className="text-[#a5d6ff]">"Docker"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">55</span>{" "}
-                  <span className="text-gray-500">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">56</span>{" "}
-                  <span className="text-[#a5d6ff]">"Vercel"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">57</span>{" "}
-                  <span className="text-gray-500">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">58</span>{" "}
-                  <span className="text-[#a5d6ff]">"Render"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">59</span>{" "}
+                  <span className="text-[#a5d6ff]">"Next.js"</span>
+                  <span className="text-gray-500">,</span>{" "}
+                  <span className="text-[#a5d6ff]">"React.js"</span>
+                  <span className="text-gray-500">,</span>{" "}
+                  <span className="text-[#a5d6ff]">"Tailwind CSS"</span>
+                  <span className="text-gray-500">,</span>{" "}
+                  <span className="text-[#a5d6ff]">"JavaFX"</span>
                   <span className="text-gray-500">],</span>
                 </div>
                 <div className="flex">
-                  <span className="line-number">60</span>{" "}
-                  <span className="text-[#7ee787]">"developer_tools"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">61</span>{" "}
-                  <span className="text-gray-500">:</span>{" "}
-                </div>
-                <div className="flex">
-                  <span className="line-number">62</span>{" "}
+                  <span className="line-number">8</span>{" "}
+                  <span className="text-[#7ee787] ml-8">"backend"</span>:{" "}
                   <span className="text-gray-500">[</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">63</span>{" "}
-                  <span className="text-[#a5d6ff]">"Git"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">64</span>{" "}
-                  <span className="text-gray-500">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">65</span>{" "}
-                  <span className="text-[#a5d6ff]">"Linux"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">66</span>{" "}
-                  <span className="text-gray-500">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">67</span>{" "}
-                  <span className="text-[#a5d6ff]">"Stripe Connect"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">68</span>{" "}
-                  <span className="text-gray-500">,</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">69</span>{" "}
-                  <span className="text-[#a5d6ff]">"MCP"</span>
-                </div>
-                <div className="flex">
-                  <span className="line-number">70</span>{" "}
+                  <span className="text-[#a5d6ff]">"Spring Boot"</span>
+                  <span className="text-gray-500">,</span>{" "}
+                  <span className="text-[#a5d6ff]">"Node.js"</span>
+                  <span className="text-gray-500">,</span>{" "}
+                  <span className="text-[#a5d6ff]">"Flask"</span>
                   <span className="text-gray-500">]</span>
                 </div>
                 <div className="flex">
-                  <span className="line-number">71</span>
+                  <span className="line-number">9</span>{" "}
+                  <span className="text-gray-500 ml-4">{"}"},</span>
+                </div>
+                <div className="flex">
+                  <span className="line-number">10</span>{" "}
+                  <span className="text-[#7ee787] ml-4">"infrastructure"</span>:{" "}
+                  <span className="text-gray-500">[</span>
+                </div>
+                <div className="flex">
+                  <span className="line-number">11</span>{" "}
+                  <span className="ml-8">
+                    <span className="text-[#a5d6ff]">"Supabase"</span>
+                    <span className="text-gray-500">,</span>{" "}
+                    <span className="text-[#a5d6ff]">"PostgreSQL"</span>
+                    <span className="text-gray-500">,</span>{" "}
+                    <span className="text-[#a5d6ff]">"MongoDB"</span>
+                    <span className="text-gray-500">,</span>{" "}
+                    <span className="text-[#a5d6ff]">"Docker"</span>
+                    <span className="text-gray-500">,</span>{" "}
+                    <span className="text-[#a5d6ff]">"Vercel"</span>
+                    <span className="text-gray-500">,</span>{" "}
+                    <span className="text-[#a5d6ff]">"Render"</span>
+                  </span>
+                </div>
+                <div className="flex">
+                  <span className="line-number">12</span>{" "}
+                  <span className="text-gray-500 ml-4">],</span>
+                </div>
+                <div className="flex">
+                  <span className="line-number">13</span>{" "}
+                  <span className="text-[#7ee787] ml-4">"developer_tools"</span>:{" "}
+                  <span className="text-gray-500">[</span>
+                </div>
+                <div className="flex">
+                  <span className="line-number">14</span>{" "}
+                  <span className="ml-8">
+                    <span className="text-[#a5d6ff]">"Git"</span>
+                    <span className="text-gray-500">,</span>{" "}
+                    <span className="text-[#a5d6ff]">"Linux"</span>
+                    <span className="text-gray-500">,</span>{" "}
+                    <span className="text-[#a5d6ff]">"Stripe Connect"</span>
+                    <span className="text-gray-500">,</span>{" "}
+                    <span className="text-[#a5d6ff]">"MCP"</span>
+                  </span>
+                </div>
+                <div className="flex">
+                  <span className="line-number">15</span>{" "}
+                  <span className="text-gray-500 ml-4">]</span>
+                </div>
+                <div className="flex">
+                  <span className="line-number">16</span>
                   <span className="text-gray-500">{"}"}</span>
                   <span className="animate-pulse ml-1 inline-block w-2 h-4 bg-primary align-middle"></span>
                 </div>
