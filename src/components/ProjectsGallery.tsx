@@ -22,20 +22,6 @@ const projects = [
     subtitle: "A comprehensive travel management platform.",
   },
   {
-    id: 2,
-    name: "Expense Tracker",
-    images: [
-      "/images/2.webp",
-      "/images/7.webp",
-      "/images/4.webp",
-      "/images/5.webp",
-    ],
-    description: `A Java-based financial tool designed for intuitive expense management. It categorizes transactions and provides clear insights into spending habits, helping users manage their personal finances effectively with a robust SQL-backed architecture.`,
-    repo: "https://github.com/PabloG55/expense-tracker-maven",
-    tech: ["Java", "SQL"],
-    subtitle: "Smart financial management.",
-  },
-  {
     id: 3,
     name: "Skipper",
     images: ["/images/img.webp", "/images/img_1.webp"],
@@ -71,6 +57,20 @@ const projects = [
     repo: "https://github.com/PabloG55/immich_sync_assistant",
     tech: ["Python", "ADB", "PyQt"],
     subtitle: "Desktop GUI sync tool.",
+  },
+  {
+    id: 2,
+    name: "Expense Tracker",
+    images: [
+      "/images/2.webp",
+      "/images/7.webp",
+      "/images/4.webp",
+      "/images/5.webp",
+    ],
+    description: `A Java-based financial tool designed for intuitive expense management. It categorizes transactions and provides clear insights into spending habits, helping users manage their personal finances effectively with a robust SQL-backed architecture.`,
+    repo: "https://github.com/PabloG55/expense-tracker-maven",
+    tech: ["Java", "SQL"],
+    subtitle: "Smart financial management.",
   },
 ];
 
