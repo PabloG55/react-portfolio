@@ -31,6 +31,20 @@ const projects = [
     subtitle: "Android App | YouTube Ad Skipper.",
   },
   {
+    id: 6,
+    name: "PacePilot",
+    images: [
+      "/images/pacepilot/1.jpeg",
+      "/images/pacepilot/2.jpeg",
+      "/images/pacepilot/3.jpeg",
+      "/images/pacepilot/4.jpeg",
+    ],
+    description: `Meet PacePilot, your intelligent AI running coach. Whether you are training for your first 5K or aiming to crush a marathon PR, PacePilot builds personalized, adaptive training plans designed specifically for your current fitness level and goals. Using Gemini and Supabase, it provides dynamic audio-guided workouts, real-time GPS tracking, heart rate zone monitoring, and seamless Strava integration.`,
+    repo: "https://play.google.com/store/apps/details?id=com.pglabs.pacepilot",
+    tech: ["React Native", "Gemini", "Strava API", "Supabase"],
+    subtitle: "AI-Powered Adaptive Running Coach.",
+  },
+  {
     id: 4,
     name: "Botifier",
     images: [
