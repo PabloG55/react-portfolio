@@ -160,7 +160,11 @@ export default function ProjectsGallery() {
                     >
                       <img
                         alt={`${proj.name} slide ${i + 1}`}
-                        className="object-cover w-full h-full opacity-80 group-hover:scale-105 transition-transform duration-700 pointer-events-none"
+                        className={`w-full h-full transition-transform duration-700 pointer-events-none ${
+                          proj.name === "PacePilot" || proj.name === "Botifier" 
+                            ? "object-contain bg-black/90" 
+                            : "object-cover opacity-80 group-hover:scale-105"
+                        }`}
                         src={img}
                       />
                     </div>
