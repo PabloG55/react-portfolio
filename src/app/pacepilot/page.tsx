@@ -67,7 +67,7 @@ export default function PacePilotPrivacy() {
         <section>
           <h2 className={styles.h2}>5. Contact Us</h2>
           <p>If you have any questions about this Privacy Policy, please contact us at:</p>
-          <p><strong>Email:</strong> support@pglabs.com</p>
+          <p><strong>Email:</strong> pgarcesb1@gmail.com</p>
         </section>
 
         <footer className={styles.footer}>

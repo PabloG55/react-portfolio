@@ -26,7 +26,7 @@ export default function PacePilotDeletion() {
 
         <section>
           <p style={{ fontSize: '1.1rem', marginBottom: '20px' }}>
-            To request deletion of your PacePilot account and all associated data, please email <strong>support@pglabs.com</strong> with the subject <strong>&apos;Account Deletion Request&apos;</strong> from the email address associated with your account.
+            To request deletion of your PacePilot account and all associated data, please email <strong>pgarcesb1@gmail.com</strong> with the subject <strong>&apos;Account Deletion Request&apos;</strong> from the email address associated with your account.
           </p>
           <p style={{ fontSize: '1.1rem' }}>
             Alternatively, you can instantly delete your account inside the app by going to <strong>Profile -&gt; Delete Account</strong>.
