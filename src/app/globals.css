@@ -34,11 +34,11 @@
 .site-header { isolation: isolate; }
 .portfolio-hero { min-height: min(760px, 100svh); padding-top: calc(var(--header-height) + 56px); padding-bottom: 80px; }
 .hero-content { width: 100%; max-width: 640px; }
-.hero-title { font-size: clamp(2.75rem, 5.3vw, 4rem); line-height: 1.08; letter-spacing: -.045em; }
+.hero-title { font-size: clamp(3rem, 5.8vw, 4.5rem); line-height: 1.08; letter-spacing: -.045em; }
 .hero-title-secondary { color: var(--color-heading-muted-light); }
 .dark .hero-title-secondary { color: var(--color-heading-muted-dark); }
-.hero-intro { margin-top: 28px; font-size: 16px; line-height: 1.8; }
-.hero-links { display: flex; align-items: center; justify-content: center; gap: 32px; margin-top: 28px; font-size: 14px; }
+.hero-intro { margin-top: 28px; font-size: 18px; line-height: 1.8; }
+.hero-links { display: flex; align-items: center; justify-content: center; gap: 32px; margin-top: 28px; font-size: 16px; }
 .hero-links a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; transition: color 200ms ease; }
 .hero-project-link { text-decoration: underline; text-underline-offset: 7px; text-decoration-thickness: 1px; }
 .hero-github-link { color: var(--color-heading-muted-light); }

@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   async rewrites() {
     const apps = ["trainpilot", "skipper"];
     return {
-      beforeFiles: apps.flatMap(app => {
+      beforeFiles: [...apps.flatMap(app => {
         const pages: Record<string, string> = {
           "/": `/${app}`,
           "/privacy": `/docs/policy/${app}`,
@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
           destination,
           has: [{ type: "host" as const, value: `${app}\\.pablogarces\\.dev` }],
         }));
-      }),
+      }), { source: "/", destination: "/ghostfleet", has: [{ type: "host" as const, value: "ghostfleet\\.pablogarces\\.dev" }] }],
     };
   },
 };

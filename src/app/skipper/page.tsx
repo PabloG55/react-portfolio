@@ -1,37 +1,18 @@
 import type { Metadata } from 'next';
-import DocPage from '../docs/DocPage';
-import styles from '../docs/doc.module.css';
-
-export const metadata: Metadata = {
-  title: 'Skipper | Video Browser',
-  description: 'A video browser with built-in ad blocking, automatic skipping of supported video ads, personal libraries, and separate profiles.',
-  alternates: { canonical: 'https://skipper.pablogarces.dev' },
-};
-
-export const dynamic = 'force-static';
-
-export default function SkipperHome() {
-  return (
-    <DocPage appName="Skipper" title="Skipper" logoSrc="/images/skipper-icon.webp" accentColor="#FF4E45">
-      <section>
-        <h2 className={styles.h2}>Watch videos with fewer ads</h2>
-        <p>
-          Skipper blocks ads and trackers by default and automatically skips supported video ads.
-          Save videos to your library, build a queue, and continue where you left off.
-          Separate profiles keep your libraries and website sign-ins apart.
-        </p>
-      </section>
-      <section>
-        <h2 className={styles.h2}>Help and privacy</h2>
-        <ul className={styles.ul}>
-          <li className={styles.li}><a className={styles.link} href="https://skipper.pablogarces.dev/support">Skipper Support</a></li>
-          <li className={styles.li}><a className={styles.link} href="https://skipper.pablogarces.dev/privacy">Privacy Policy</a></li>
-        </ul>
-        <p>Questions? Email <a className={styles.link} href="mailto:pasebarona@gmail.com">pasebarona@gmail.com</a>.</p>
-      </section>
-      <section>
-        <p><a className={styles.link} href="https://pablogarces.dev">Pablo Garces</a> &middot; Software engineer and Skipper developer.</p>
-      </section>
-    </DocPage>
-  );
-}
+import Image from 'next/image';
+import { ArrowUpRight } from 'lucide-react';
+import Reveal from '@/components/Reveal';
+import LandingVideo from '@/components/marketing/LandingVideo';
+import { ProductHeader, ProductFooter } from '@/components/marketing/MarketingShell';
+import s from '@/components/marketing/marketing.module.css';
+export const metadata: Metadata = { metadataBase: new URL('https://skipper.pablogarces.dev'), title: 'Skipper | Watch the video. Skip the ads.', description: 'A video browser with ad blocking by default, a personal queue, playback resume, and separate profiles. Your videos. Your queue. Right where you left off.', alternates: { canonical: 'https://skipper.pablogarces.dev' }, icons: { icon: '/marketing/skipper-favicon.png', apple: '/images/skipper-icon.webp' }, openGraph: { title: 'Skipper — Watch the video. Skip the ads.', url: 'https://skipper.pablogarces.dev', images: ['/images/skipper-icon.webp'] } };
+export default function SkipperHome() { return <div id="top" className={`${s.page} ${s.skipper}`}>
+<ProductHeader name="Skipper" icon="/images/skipper-icon.webp" links={[{ label: 'The library', href: '#library' }, { label: 'Privacy', href: '#privacy' }]} action={{ label: 'Support', href: 'https://skipper.pablogarces.dev/support' }} />
+<main className={s.container}>
+<div className={s.hero}><div><span className={s.eyebrow}>Skipper v2 · video browser for iPhone & iPad</span><h1>Watch the video.<br /><span className={s.accent}>Skip the ads.</span></h1><p>Your videos. Your queue. Right where you left off. Browse with fewer interruptions, save something for later, and pick up at your last playback position.</p><div className={s.actions}><a className={s.button} href="#library">Meet your next queue ↓</a><a className={s.textLink} href="https://skipper.pablogarces.dev/support">Get in touch <ArrowUpRight size={15} /></a></div><p className={s.note}>Version 2 is in development. Ads and trackers are blocked by default; supported video ads are skipped automatically.</p></div><div className={s.screenStage}><Image className={s.screenshot} src="/projects/skipper/iphone-queue.webp" alt="Skipper queue with saved videos and their playback progress" width={393} height={852} priority /></div></div>
+<section id="library" className={s.section}><Reveal><div className={s.split}><div><span className={s.eyebrow}>Your queue, on your terms</span><h2>Save it now.<br />Keep watching later.</h2><p>Save a video, queue the next one, and come back to the exact spot you left. Your library keeps links and metadata, rather than downloading videos.</p><p>Browsing and playback run in separate WebViews. Opening another page doesn’t tear down your player.</p></div><div className={s.screenStage}><LandingVideo src="/projects/skipper/queue-profiles.mp4" poster="/projects/skipper/queue-profiles.webp" label="Skipper queue and profiles walkthrough" /></div></div></Reveal></section>
+<section id="privacy" className={s.section}><Reveal><span className={s.eyebrow}>Less noise. More control.</span><h2>A browser that remembers<br />only what you ask it to.</h2><div className={s.features}><article><h3>Blocking is built in.</h3><p>Ads and trackers are blocked before they load. Supported video ads are skipped automatically. Less waiting between you and what you came to watch.</p></article><article><h3>A profile for each account.</h3><p>Each profile has its own website sign-ins and personal library. Keep different accounts and queues apart.</p></article><article><h3>Private means temporary.</h3><p>Private mode keeps its queue in memory and saves no history. Leave the session, and that temporary queue goes with it.</p></article></div></Reveal></section>
+<section className={s.section}><Reveal><div className={s.split}><div className={s.screenStage}><Image className={s.screenshot} src="/projects/skipper/iphone-profiles.webp" alt="Skipper profile selector with separate accounts and private mode" width={393} height={852} /></div><div><span className={s.eyebrow}>One browser. Separate spaces.</span><h2>Switch profiles.<br />Keep your place.</h2><p>A queue for one account doesn’t have to become a queue for every account. Profiles keep your library and sign-ins together, so switching feels like opening your own space.</p><a className={s.textLink} href="https://skipper.pablogarces.dev/privacy">Read the privacy policy <ArrowUpRight size={14} /></a></div></div></Reveal></section>
+<section className={s.section}><Reveal><h2>A few things to know.</h2><div className={s.faq}><details><summary>Does it skip every video ad?</summary><p>Skipper blocks ads and trackers by default and skips supported video ads. Results depend on the website and its player; some ads are part of the video stream itself.</p></details><details><summary>Are saved videos downloaded?</summary><p>No. The library saves links, metadata, and playback progress. Playback still comes from the original website.</p></details><details><summary>Is version 2 available yet?</summary><p>Version 2 is in development. Contact support for current availability and updates.</p></details><details><summary>What happens in private mode?</summary><p>Its queue stays in memory and history isn’t saved. Private browsing still connects to the websites you visit.</p></details></div></Reveal></section>
+<section className={`${s.section} ${s.closing}`}><Reveal><h2>Less interruption.<br />More of your queue.</h2><div className={s.actions}><a className={s.button} href="https://skipper.pablogarces.dev/support">Ask about Skipper <ArrowUpRight size={18} /></a></div></Reveal></section>
+</main><ProductFooter name="Skipper" app="skipper" /></div>; }

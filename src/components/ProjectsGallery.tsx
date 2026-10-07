@@ -8,7 +8,7 @@ import SystemPreview from "./SystemPreview";
 type Project = {
   id: string; name: string; category: string; status: string; subtitle: string;
   description: string; detail: string; tech: string[];
-  href?: string; linkLabel?: string;
+  href?: string; linkLabel?: string; website?: string;
   video?: string; poster?: string; gif?: string;
   diagram?: "watch" | "brain"; caption: string;
 };
@@ -20,7 +20,7 @@ const projects: Project[] = [
     description: "I wanted one place for my runs and my lifting. TrainPilot builds run plans around a goal race, tracks pace and heart rate, and speaks coaching cues while the phone stays in your pocket. In the gym, it logs sets and suggests what to lift next based on what you actually completed.",
     detail: "Apple Watch controls, Health import/export, Strava and intervals.icu sync, and training with friends. Built for both English and Spanish.",
     tech: ["React Native", "Expo", "Swift", "HealthKit"],
-    href: "https://apps.apple.com/us/app/trainpilot/id6788894342", linkLabel: "Get TrainPilot",
+    href: "https://apps.apple.com/us/app/trainpilot/id6788894342", linkLabel: "Get TrainPilot", website: "https://trainpilot.pablogarces.dev",
     video: "/projects/trainpilot/demo.mp4", poster: "/projects/trainpilot/poster.webp", gif: "/projects/trainpilot/demo.gif",
     caption: "Product walkthrough · running, lifting, and Apple Watch",
   },
@@ -30,7 +30,7 @@ const projects: Project[] = [
     description: "Skipper blocks ads and trackers by default and automatically skips supported video ads. The second version adds a native personal library: save a video, queue the next one, and pick up at your last playback position. Browsing and playback run in separate WebViews, so opening another page doesn’t tear down the player.",
     detail: "Each profile gets its own library and sign-ins. Private mode keeps the queue in memory and saves no history. Saved videos are links and metadata, rather than downloads.",
     tech: ["React Native", "TypeScript", "WKWebView", "Swift"],
-    href: "/docs/support/skipper", linkLabel: "About Skipper",
+    href: "https://skipper.pablogarces.dev", linkLabel: "About Skipper",
     video: "/projects/skipper/queue-profiles.mp4", poster: "/projects/skipper/queue-profiles.webp", gif: "/projects/skipper/queue-profiles.gif",
     caption: "Queue and profiles · current iOS UI",
   },
@@ -40,7 +40,7 @@ const projects: Project[] = [
     description: "One screen to see what every coding agent is doing. Start a worker in its own Git worktree, jump between sessions, or watch several live terminals side by side. Sessions stay running when you close the window, and the phone client lets you answer a blocked worker from anywhere.",
     detail: "Works with multiple coding agents. Per-project session isolation, worktree reuse, and a governor for resource and usage limits handle the less glamorous parts of running a fleet.",
     tech: ["Node.js", "tmux", "Git worktrees", "MCP"],
-    href: "https://github.com/PabloG55/ghostfleet", linkLabel: "View source",
+    href: "https://github.com/PabloG55/ghostfleet", linkLabel: "View source", website: "https://ghostfleet.pablogarces.dev",
     video: "/projects/ghostfleet/stack-demo.mp4", poster: "/projects/ghostfleet/stack-poster.webp", gif: "/projects/ghostfleet/stack-demo.gif",
     caption: "Recorded terminal demo · Claude, OpenCode, and Codex side by side",
   },
@@ -139,7 +139,7 @@ export default function ProjectsGallery() {
         <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-4">{project.description}</p>
         <p className="text-sm text-gray-500 dark:text-gray-500 leading-relaxed mb-6">{project.detail}</p>
         <ul className="project-tech" aria-label={`${project.name} technologies`}>{project.tech.map(tech => <li key={tech}>{tech}</li>)}</ul>
-        {project.href && <a target={project.href.startsWith("http") ? "_blank" : undefined} rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined} href={project.href} className="project-link">{project.linkLabel}<ArrowUpRight size={17} /></a>}
+        <div className="flex flex-wrap gap-6">{project.href && <a target={project.href.startsWith("http") ? "_blank" : undefined} rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined} href={project.href} className="project-link">{project.linkLabel}<ArrowUpRight size={17} /></a>}{project.website && <a href={project.website} className="project-link">Explore the app<ArrowUpRight size={17} /></a>}</div>
       </div>
       <div className={`order-1 min-w-0 ${index % 2 === 0 ? "lg:order-2" : "lg:order-1"}`}><ProjectMedia project={project} /></div>
     </article>

@@ -1,37 +1,22 @@
 import type { Metadata } from 'next';
-import DocPage from '../docs/DocPage';
-import styles from '../docs/doc.module.css';
-
-export const metadata: Metadata = {
-  title: 'TrainPilot | Running and Gym Training',
-  description: 'Running plans, live coaching, and gym progression. TrainPilot support and privacy information.',
-  alternates: { canonical: 'https://trainpilot.pablogarces.dev' },
-};
-
-export const dynamic = 'force-static';
-
-export default function TrainPilotHome() {
-  return (
-    <DocPage appName="TrainPilot" title="TrainPilot" logoSrc="/images/trainpilot-icon.webp">
-      <section>
-        <h2 className={styles.h2}>Running plans and gym progression</h2>
-        <p>
-          Plan your runs, follow live coaching cues, and track your lifting. TrainPilot brings
-          running and gym training into one app, with an Apple Watch companion.
-        </p>
-        <a className={styles.requestAction} href="https://apps.apple.com/us/app/trainpilot/id6788894342" target="_blank" rel="noopener noreferrer">Get TrainPilot on the App Store</a>
-      </section>
-      <section>
-        <h2 className={styles.h2}>Help and privacy</h2>
-        <ul className={styles.ul}>
-          <li className={styles.li}><a className={styles.link} href="https://trainpilot.pablogarces.dev/support">TrainPilot Support</a></li>
-          <li className={styles.li}><a className={styles.link} href="https://trainpilot.pablogarces.dev/privacy">Privacy Policy</a></li>
-        </ul>
-        <p>Questions? Email <a className={styles.link} href="mailto:pasebarona@gmail.com">pasebarona@gmail.com</a>.</p>
-      </section>
-      <section>
-        <p><a className={styles.link} href="https://pablogarces.dev">Pablo Garces</a> &middot; Software engineer and TrainPilot developer.</p>
-      </section>
-    </DocPage>
-  );
-}
+import Image from 'next/image';
+import localFont from 'next/font/local';
+import { ArrowUpRight } from 'lucide-react';
+import Reveal from '@/components/Reveal';
+import TrainPilotPreview from '@/components/marketing/TrainPilotPreview';
+import { ProductHeader, ProductFooter } from '@/components/marketing/MarketingShell';
+import s from '@/components/marketing/marketing.module.css';
+const body = localFont({ src: [{ path: '../../../public/marketing/fonts/HankenGrotesk_400Regular.ttf', weight: '400' }, { path: '../../../public/marketing/fonts/HankenGrotesk_600SemiBold.ttf', weight: '600' }], variable: '--font-body', display: 'swap' });
+const display = localFont({ src: '../../../public/marketing/fonts/SchibstedGrotesk_600SemiBold.ttf', weight: '600', variable: '--font-display', display: 'swap' });
+const store = 'https://apps.apple.com/us/app/trainpilot/id6788894342';
+export const metadata: Metadata = { metadataBase: new URL('https://trainpilot.pablogarces.dev'), title: 'TrainPilot | Your runs. Your lifts. Your next step.', description: 'Personal running plans, spoken coaching, gym progression, and Apple Watch workouts. TrainPilot brings your training together.', alternates: { canonical: 'https://trainpilot.pablogarces.dev' }, icons: { icon: '/marketing/trainpilot-favicon.png', apple: '/images/trainpilot-icon.webp' }, openGraph: { title: 'TrainPilot — Your runs. Your lifts. Your next step.', description: 'Running and strength training, together.', url: 'https://trainpilot.pablogarces.dev', images: ['/marketing/trainpilot-hi1.webp'] } };
+export default function TrainPilotHome() { return <div id="top" className={`${s.page} ${body.variable} ${display.variable}`}>
+<ProductHeader name="TrainPilot" icon="/images/trainpilot-icon.webp" links={[{ label: 'Training', href: '#training' }, { label: 'Inside the app', href: '#inside' }]} action={{ label: 'Get the app', href: store }} />
+<main className={s.container}>
+<div className={s.hero}><div><span className={s.eyebrow}>Running + strength · iPhone & Apple Watch</span><h1>A plan for your runs.<br />A logbook for your <span className={s.accent}>lifts.</span></h1><p>Train for a race. Get stronger in the gym. Know what to do today, and build on what you did yesterday.</p><div className={s.actions}><a className={s.button} href={store}>Download on the App Store <ArrowUpRight size={18} /></a><a className={s.textLink} href="#training">See how it works ↓</a></div><p className={s.note}>Free to download. No ads. English & Spanish.</p></div><TrainPilotPreview /></div>
+<section id="training" className={s.section}><Reveal><span className={s.eyebrow}>Two ways to train. One place to keep going.</span><h2>Your next session starts<br />with your last one.</h2><div className={s.features}><article><h3>Run toward a goal.</h3><p>A plan built around your race, current times, and available days. Follow GPS pace, intervals, and spoken coaching outdoors, or take your session to the treadmill.</p></article><article style={{ borderColor: '#FF5A2C' }}><h3>Lift with a next step.</h3><p>Log sets, reps, weight, and rest. Progression uses your completed lifts to suggest when to add weight and when to back off. Choose from 700+ exercises.</p></article><article><h3>Leave your phone behind.</h3><p>Start and pause runs on Apple Watch, check your pace, and log gym sets from your wrist. Keep your attention on the workout.</p></article></div></Reveal></section>
+<section id="inside" className={s.section}><Reveal><span className={s.eyebrow}>Inside TrainPilot</span><h2>The plan. The session.<br />The work you put in.</h2><p>Running and strength have their own space, with your training history close at hand.</p><div className={s.screenshots}>{[1,2,3,4].map((n) => <Image key={n} src={`/marketing/trainpilot-hi${n}.webp`} alt={`TrainPilot App Store screenshot ${n}`} width={500} height={1000} />)}</div></Reveal></section>
+<section className={s.section}><Reveal><div className={s.split}><div><span className={s.eyebrow}>Fits your training setup</span><h2>Your workouts don’t<br />have to live in one app.</h2><p>Connect Apple Health, Strava, or intervals.icu. Pair a Bluetooth heart-rate sensor, and keep your workout data alongside the tools you already use.</p></div><div><h3>Built for the whole session.</h3><p>Warm-ups, intervals, rest timers, supersets, and progression. From the first easy kilometer to your last set, there’s a place for the details.</p><a className={s.textLink} href="https://trainpilot.pablogarces.dev/support">Need a hand? Get support <ArrowUpRight size={14} /></a></div></div></Reveal></section>
+<section className={s.section}><Reveal><h2>A few things to know.</h2><div className={s.faq}><details><summary>Can I use it for running and the gym?</summary><p>Yes. Switch between running and gym modes in the same app. Each has its own plans, workout tools, and history.</p></details><details><summary>Does it work with Apple Watch?</summary><p>Yes. TrainPilot has an Apple Watch companion for running and gym sessions.</p></details><details><summary>Can I train indoors?</summary><p>Yes. Treadmill sessions and gym logging are part of TrainPilot.</p></details><details><summary>Where can I manage my account?</summary><p>Visit <a href="https://trainpilot.pablogarces.dev/support">support</a> for help, or the <a href="https://trainpilot.pablogarces.dev/delete-account">account deletion page</a> to request deletion.</p></details></div></Reveal></section>
+<section className={`${s.section} ${s.closing}`}><Reveal><h2>Make today a training day.</h2><p>Your next run or lift starts here.</p><div className={s.actions}><a className={s.button} href={store}>Get TrainPilot <ArrowUpRight size={18} /></a></div></Reveal></section>
+</main><ProductFooter name="TrainPilot" app="trainpilot" /></div>; }
