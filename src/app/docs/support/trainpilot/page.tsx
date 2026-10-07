@@ -4,7 +4,8 @@ import styles from '../../doc.module.css';
 
 export const metadata: Metadata = {
   title: 'Support | TrainPilot',
-  description: 'Support and contact information for TrainPilot, a running and gym training app for iOS.',
+  alternates: { canonical: 'https://trainpilot.pablogarces.dev/support' },
+  description: 'Support and contact information for TrainPilot, a running and gym training app for iOS and Android.',
 };
 
 export const dynamic = 'force-static';
@@ -13,7 +14,7 @@ export default function TrainPilotSupport() {
   return (
     <DocPage appName="TrainPilot" title="TrainPilot Support">
       <section>
-        <p>TrainPilot is a running and gym training app for iOS.</p>
+        <p>TrainPilot is a running and gym training app for iOS and Android, for ages 13 and older.</p>
       </section>
 
       <section>
@@ -21,7 +22,7 @@ export default function TrainPilotSupport() {
         <p>
           Email{' '}
           <a className={styles.link} href="mailto:pasebarona@gmail.com">pasebarona@gmail.com</a> with
-          any question, bug report or account request. We aim to reply within a few days.
+          any question, bug report or account request.
         </p>
       </section>
 
@@ -30,8 +31,9 @@ export default function TrainPilotSupport() {
 
         <h3 className={styles.h3}>How do I delete my account and my data?</h3>
         <p>
-          In the app, go to <strong>Profile &rarr; Delete Account</strong>. This is permanent and
-          erases your data — it is not a deactivation.
+          In the app, go to <strong>Profile &rarr; Delete Account</strong>. Account deletion is
+          permanent. For account requests, email{' '}
+          <a className={styles.link} href="mailto:pasebarona@gmail.com">pasebarona@gmail.com</a>.
         </p>
 
         <h3 className={styles.h3}>Why does TrainPilot need background location?</h3>
@@ -56,12 +58,19 @@ export default function TrainPilotSupport() {
         <h3 className={styles.h3}>Is TrainPilot free?</h3>
         <p>
           Yes — free for a limited time. Every feature is unlocked and there is no subscription at this
-          time.
+          time. Ads and paywalls are currently disabled.
+        </p>
+
+        <h3 className={styles.h3}>Does voice set logging upload my recording?</h3>
+        <p>
+          No. Voice set logging uses optional microphone permission and on-device speech recognition.
+          TrainPilot does not upload or retain the audio recording. Workout values you confirm,
+          such as repetitions and weight, can be saved in your workout history.
         </p>
 
         <h3 className={styles.h3}>How do I connect a heart-rate strap?</h3>
         <p>
-          Bluetooth strap support is in the run screen. Pair from inside the app, not from iOS
+          Bluetooth strap support is in the run screen. Pair from inside the app, not from device
           Settings.
         </p>
       </section>
@@ -70,7 +79,7 @@ export default function TrainPilotSupport() {
         <h2 className={styles.h2}>Privacy</h2>
         <p>
           Read the{' '}
-          <a className={styles.link} href="/docs/policy/trainpilot">TrainPilot Privacy Policy</a>.
+          <a className={styles.link} href="https://trainpilot.pablogarces.dev/privacy">TrainPilot Privacy Policy</a>.
         </p>
       </section>
     </DocPage>

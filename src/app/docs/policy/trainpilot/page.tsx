@@ -4,18 +4,19 @@ import styles from '../../doc.module.css';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | TrainPilot',
+  alternates: { canonical: 'https://trainpilot.pablogarces.dev/privacy' },
   description:
-    'Privacy Policy for TrainPilot, a running and gym training app for iOS published by Pablo Garces.',
+    'Privacy Policy for TrainPilot, a running and gym training app for iOS and Android published by Pablo Garces.',
 };
 
 export const dynamic = 'force-static';
 
 export default function TrainPilotPrivacy() {
   return (
-    <DocPage appName="TrainPilot" title="Privacy Policy" lastUpdated="September 14, 2026">
+    <DocPage appName="TrainPilot" title="Privacy Policy" lastUpdated="October 7, 2026">
       <section>
         <p>
-          <strong>TrainPilot</strong> is a running and gym training app for iOS (bundle identifier{' '}
+          <strong>TrainPilot</strong> is a running and gym training app for iOS and Android (application identifier{' '}
           <strong>com.pglabs.trainpilot</strong>), published by Pablo Garces. This Privacy Policy
           explains what data the app collects, why it collects it, who it is shared with, and the
           choices you have.
@@ -32,8 +33,9 @@ export default function TrainPilotPrivacy() {
         <h3 className={styles.h3}>Account data</h3>
         <p>
           Your email address, display name, an optional username, and an account identifier (UUID).
-          Authentication is by email and password or by a one-time code sent to your email. TrainPilot
-          does not use any third-party or social login.
+          You can sign in with a one-time code sent to your email, Google, or Apple on supported
+          devices. When you choose Google or Apple, the sign-in provider shares the account
+          information you authorize, such as your email and name, with TrainPilot for authentication.
         </p>
 
         <h3 className={styles.h3}>Profile data you enter</h3>
@@ -88,6 +90,15 @@ export default function TrainPilotPrivacy() {
         <h3 className={styles.h3}>Motion data</h3>
         <p>Motion data is used to measure your running cadence.</p>
 
+        <h3 className={styles.h3}>Microphone and voice set logging</h3>
+        <p>
+          Voice set logging is optional and requires microphone and speech-recognition permission.
+          Speech is recognized on your device so you can log workout values, such as repetitions
+          and weight, by speaking. TrainPilot does not upload or retain the audio recording, and
+          does not send it to the model used for training-plan generation. The workout values you
+          confirm can be saved to your workout history.
+        </p>
+
         <h3 className={styles.h3}>Social features</h3>
         <p>
           Friends, friend requests, shared &quot;train together&quot; sessions, and any posts you
@@ -95,7 +106,14 @@ export default function TrainPilotPrivacy() {
         </p>
 
         <h3 className={styles.h3}>Usage and diagnostic data</h3>
-        <p>In-app events and crash reports.</p>
+        <p>
+          App interaction, screen and lifecycle events, diagnostic records, crash reports, and
+          error telemetry help us understand user flows and diagnose failures. TrainPilot also
+          enables masked session replay through PostHog to diagnose user flows and UI failures.
+          Text inputs, rendered text, images, and sandboxed views are masked. Network telemetry
+          and console-log capture are disabled. Masking the replay does not make all analytics
+          anonymous: PostHog receives your account UUID and email address.
+        </p>
       </section>
 
       <section>
@@ -111,11 +129,13 @@ export default function TrainPilotPrivacy() {
             hosts essentially all of the data described above and is our primary processor.
           </li>
           <li className={styles.li}>
-            <strong>PostHog</strong> — product analytics. PostHog receives your account identifier{' '}
-            <strong>and your email address</strong>, plus non-identifying workout summary events (for
-            example: run started or completed, with distance, duration, average pace, and whether a
-            planned workout was attached). Session replay is <strong>disabled</strong>. PostHog does
-            not receive GPS coordinates or heart-rate data.
+            <strong>PostHog</strong> — product analytics, masked session replay, and error telemetry.
+            PostHog receives your account identifier (UUID) <strong>and your email address</strong>,
+            together with limited app interaction, screen, lifecycle and workout-flow events.
+            Masked replay is enabled to help diagnose user flows and UI failures; text inputs,
+            rendered text, images, and sandboxed views are masked. Network telemetry and
+            console-log capture are disabled. Our analytics events do not include GPS coordinates
+            or heart-rate measurements.
           </li>
           <li className={styles.li}>
             <strong>Sentry</strong> — crash and error reporting. Sentry receives your opaque account
@@ -129,9 +149,8 @@ export default function TrainPilotPrivacy() {
             exposed to the app.
           </li>
           <li className={styles.li}>
-            <strong>RevenueCat</strong> — subscription management. RevenueCat is present in the app
-            but is <strong>not currently active</strong>. The app is free at this time and no purchases
-            are processed.
+            <strong>RevenueCat</strong> — subscription management is disabled, and its native module
+            is excluded from this release. Paywalls are disabled and no purchases are processed.
           </li>
           <li className={styles.li}>
             <strong>Strava</strong> — <strong>optional</strong>. Only if you explicitly connect your
@@ -142,9 +161,9 @@ export default function TrainPilotPrivacy() {
             it.
           </li>
           <li className={styles.li}>
-            <strong>Google AdMob</strong> — an advertising SDK is present in the codebase but is{' '}
-            <strong>currently disabled</strong>. No ads are served and no advertising identifier is
-            collected at this time.
+            <strong>Google AdMob</strong> — advertising is disabled, and its native module is
+            excluded from this release. No ads are served and no advertising identifier is
+            collected for advertising at this time.
           </li>
         </ul>
       </section>
@@ -153,17 +172,19 @@ export default function TrainPilotPrivacy() {
         <h2 className={styles.h2}>3. Your Rights and Choices</h2>
         <ul className={styles.ul}>
           <li className={styles.li}>
-            <strong>Delete your account and all associated data from inside the app:</strong> go to the{' '}
-            <strong>Profile screen &rarr; Delete Account</strong>. This is a permanent erasure, not a
-            deactivation.
+            <strong>Delete your account from inside the app:</strong> go to{' '}
+            <strong>Profile &rarr; Delete Account</strong>. This permanently deletes your account,
+            profile, account-linked training plans and workout history. For account questions,
+            contact <a className={styles.link} href="mailto:pasebarona@gmail.com">pasebarona@gmail.com</a>.
           </li>
           <li className={styles.li}>
             You can export and review your data, and you can disconnect Apple Health, Strava and
             intervals.icu at any time.
           </li>
           <li className={styles.li}>
-            You can revoke location, health, photo, motion, Bluetooth and notification permissions in
-            iOS Settings at any time. The app degrades gracefully when a permission is withheld.
+            You can revoke location, health, photo, microphone, speech-recognition, motion,
+            Bluetooth and notification permissions in your device settings at any time. Optional
+            features that need those permissions may stop working when permission is withheld.
           </li>
           <li className={styles.li}>
             For any privacy request, contact{' '}
@@ -193,8 +214,8 @@ export default function TrainPilotPrivacy() {
       <section>
         <h2 className={styles.h2}>4. Children</h2>
         <p>
-          TrainPilot is not directed to children under 13 and we do not knowingly collect data from
-          them.
+          TrainPilot is intended for teens and adults aged 13 and older. It is not directed to
+          children under 13, and we do not knowingly collect data from them.
         </p>
       </section>
 

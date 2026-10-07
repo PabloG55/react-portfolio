@@ -44,6 +44,12 @@
 
 .ul {
     padding-left: 20px;
+    list-style: disc;
+}
+
+.ol {
+    padding-left: 20px;
+    list-style: decimal;
 }
 
 .li {
@@ -53,6 +59,30 @@
 .link {
     color: #3b82f6;
     text-decoration: underline;
+}
+
+.requestPanel {
+    padding: 20px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+}
+
+.requestAction {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin: 16px 0;
+    padding: 10px 16px;
+    border-radius: 6px;
+    background: #1d4ed8;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.requestAction:hover {
+    background: #1e40af;
 }
 
 .footer {
