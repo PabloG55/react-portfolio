@@ -14,3 +14,9 @@
 .screenLayer[data-screen=run]{transform:translateX(-12px) scale(.985)}
 .screenLayer[data-active=true]{opacity:1;transform:translateX(0) scale(1);z-index:1}
 @media(prefers-reduced-motion:reduce){.screenLayer,.previewSwitch::before{transition:none}}
+
+.installBlock{max-width:560px}.installBlock .install{max-width:none}
+.promptActions{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:12px;font-size:12px;color:var(--muted)}
+.promptActions button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:#181825;color:var(--accent);font:11px var(--font-mono);cursor:pointer;flex-shrink:0}
+.promptPreview{margin-top:4px;color:var(--muted);font-size:11px}.promptPreview summary{cursor:pointer;width:fit-content;min-height:44px;display:list-item;align-content:center}.promptPreview pre{margin:8px 0 0;padding:18px;border:1px solid var(--line);border-radius:8px;background:#181825;color:var(--ink);font:11px/1.8 var(--font-mono);white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow-y:auto}
+@media(max-width:600px){.promptActions{align-items:flex-start;flex-direction:column;gap:8px}.promptActions button{width:100%}}
