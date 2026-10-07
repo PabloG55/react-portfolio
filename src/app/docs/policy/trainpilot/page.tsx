@@ -174,8 +174,10 @@ export default function TrainPilotPrivacy() {
           <li className={styles.li}>
             <strong>Delete your account from inside the app:</strong> go to{' '}
             <strong>Profile &rarr; Delete Account</strong>. This permanently deletes your account,
-            profile, account-linked training plans and workout history. For account questions,
-            contact <a className={styles.link} href="mailto:pasebarona@gmail.com">pasebarona@gmail.com</a>.
+            profile, account-linked training plans and workout history. Read the{' '}
+            <a className={styles.link} href="https://trainpilot.pablogarces.dev/delete-account">TrainPilot account deletion page</a>{' '}
+            for the full scope, records that are handled separately, and how to request deletion
+            by email without reinstalling the app.
           </li>
           <li className={styles.li}>
             You can export and review your data, and you can disconnect Apple Health, Strava and

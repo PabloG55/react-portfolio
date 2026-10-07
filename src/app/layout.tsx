@@ -13,9 +13,16 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pablo Garces | Minimalist Future Portfolio",
+  title: "Pablo Garces | Software Engineer",
   description:
-    "Pablo Garces - Computer Science Student at UNCC. Specializing in AI & Software Engineering.",
+    "Software engineer and M.S. student at UNC Charlotte. Building TrainPilot, Skipper, Ghostfleet, and tools I use every day.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180" }],
+  },
 };
 
 export default function RootLayout({
@@ -26,10 +33,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-          rel="stylesheet"
-        />
         <script
           dangerouslySetInnerHTML={{
             __html: `

@@ -6,6 +6,8 @@ export default function ParticleNetwork() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (motion.matches) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -50,7 +52,7 @@ export default function ParticleNetwork() {
 
     const particles: Particle[] = [];
     // Adjust density based on screen size (denser for more showy effect)
-    const numParticles = Math.floor((width * height) / 6000);
+    const numParticles = Math.min(100, Math.floor((width * height) / 10000));
 
     for (let i = 0; i < numParticles; i++) {
       particles.push(createParticle());
@@ -83,7 +85,7 @@ export default function ParticleNetwork() {
     window.addEventListener("resize", handleResize);
 
     let animationFrameId: number;
-    const maxDistance = 450; // The radius of visibility around the mouse
+    const maxDistance = 300;
 
     const render = () => {
       ctx.clearRect(0, 0, width, height);
@@ -105,7 +107,7 @@ export default function ParticleNetwork() {
         // Only draw interactions if the particle is near the mouse
         if (distMouse < maxDistance) {
           // The closer to the mouse, the more opaque it is. Boosted multiplier for brightness.
-          const alpha = Math.min(1, (1 - distMouse / maxDistance) * 2.0);
+          const alpha = (1 - distMouse / maxDistance) * 0.5;
 
           // Draw the particle itself making it fully solid
           ctx.beginPath();
@@ -129,7 +131,7 @@ export default function ParticleNetwork() {
               );
 
               if (distMouse2 < maxDistance) {
-                const lineAlpha = (1 - dist / 150) * alpha; // Fades based on connection length AND mouse proximity
+                const lineAlpha = (1 - dist / 150) * alpha * 0.65;
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);
                 ctx.lineTo(p2.x, p2.y);
@@ -145,12 +147,19 @@ export default function ParticleNetwork() {
       animationFrameId = requestAnimationFrame(render);
     };
 
+    const handleMotionChange = () => {
+      cancelAnimationFrame(animationFrameId);
+      if (motion.matches) ctx.clearRect(0, 0, width, height);
+      else render();
+    };
+    motion.addEventListener("change", handleMotionChange);
     render();
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       document.body.removeEventListener("mouseleave", handleMouseLeave);
       window.removeEventListener("resize", handleResize);
+      motion.removeEventListener("change", handleMotionChange);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

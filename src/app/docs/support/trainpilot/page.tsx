@@ -32,8 +32,9 @@ export default function TrainPilotSupport() {
         <h3 className={styles.h3}>How do I delete my account and my data?</h3>
         <p>
           In the app, go to <strong>Profile &rarr; Delete Account</strong>. Account deletion is
-          permanent. For account requests, email{' '}
-          <a className={styles.link} href="mailto:pasebarona@gmail.com">pasebarona@gmail.com</a>.
+          permanent. You can also request deletion without reinstalling the app from the{' '}
+          <a className={styles.link} href="https://trainpilot.pablogarces.dev/delete-account">TrainPilot account deletion page</a>,
+          which explains the request steps, affected data, and records handled separately.
         </p>
 
         <h3 className={styles.h3}>Why does TrainPilot need background location?</h3>

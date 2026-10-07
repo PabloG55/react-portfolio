@@ -42,11 +42,12 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
-    console.error("API Route Email Error:", error.message || error);
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    console.error("API Route Email Error:", errorMessage);
     return NextResponse.json(
       {
-        error: "Failed to send message: " + (error.message || "Unknown error"),
+        error: "Failed to send message: " + errorMessage,
       },
       { status: 500 },
     );

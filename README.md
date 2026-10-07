@@ -34,13 +34,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 **Deploy by pushing to `main`.** Production (https://pablogarces.vercel.app) is built by
 Vercel's GitHub integration on every push to `main`. That is the only deploy path.
 
-> **Do not run `vercel deploy` / `vercel --prod` from this repo.**
-> There is no `.vercel` directory here, and the Vercel CLI on this machine is logged
-> into the scope `casper-5849`, which contains **zero projects** — the portfolio project
-> lives under a different account. A CLI deploy therefore does not update
-> pablogarces.vercel.app; it silently creates a brand-new, unrelated project and hands
-> you a URL that looks plausible but is not the live site.
-> Verified 2026-09-14 (`vercel whoami` → `casper-5849`, `vercel projects ls` → none).
+> **Do not run `vercel deploy` / `vercel --prod` from this unlinked checkout.**
+> Publish through the existing GitHub integration by pushing to `main`.
+> The CLI previously used a different scope with no projects. On October 7, 2026,
+> the owner signed in as `pablo-garces`; the correct team is
+> `pablo-6122s-projects`, and the existing project is `react-portfolio`.
+> The CLI can manage that project's domains and DNS, but an unlinked CLI deploy
+> can create a different project instead of updating the live portfolio.
 
 After pushing, production takes roughly 30-60s to go live. Verify with `curl` rather than
 assuming — `curl` runs no JavaScript, so a 200 with the expected text in the body also
@@ -67,3 +67,21 @@ Both share `src/app/docs/DocPage.tsx` + `doc.module.css`. To add an app, create
 
 Older policy pages (`/recetai`, `/pacepilot`) predate this shell and still live at their
 own top-level routes.
+
+## App subdomains
+
+The existing Vercel project also serves these app sites through host-specific
+rewrites in `next.config.ts`:
+
+- `https://trainpilot.pablogarces.dev` — app homepage, `/privacy`, and `/support`.
+- `https://skipper.pablogarces.dev` — app homepage, `/privacy`, and `/support`.
+
+Keep the existing `/docs/policy/<app>` and `/docs/support/<app>` routes working.
+The short subdomain paths are additional routes, not replacements or redirects.
+
+TrainPilot's deletion-request page is available through both
+`/docs/delete-account/trainpilot` and
+`https://trainpilot.pablogarces.dev/delete-account`. Keep both paths supported.
+The page describes the email request process and separately handled records;
+it makes no fixed retention-duration or request-completion commitment. Update
+those terms only when the owner supplies the actual periods.
