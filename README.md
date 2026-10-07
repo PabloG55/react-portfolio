@@ -78,8 +78,8 @@ rewrites in `next.config.ts`:
 - `https://ghostfleet.pablogarces.dev` — Ghostfleet marketing homepage.
 
 The three marketing pages use each project's existing colors, logos, and real
-product media. TrainPilot includes an interactive React preview with clearly
-labeled sample data and locally bundled app fonts. Skipper v2 is labeled in
+product media. TrainPilot shows real Run and Gym screenshots in a fixed-size phone frame,
+with locally bundled app fonts. Skipper v2 is labeled in
 development until a public release link is supplied. Ghostfleet uses the actual
 three-agent terminal recording and the public mobile walkthrough.
 

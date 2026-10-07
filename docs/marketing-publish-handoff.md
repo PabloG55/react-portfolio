@@ -1,15 +1,13 @@
 # Marketing landings — October 7, 2026
 
 TrainPilot, Skipper v2, and Ghostfleet have brand-matched landing pages with
-existing app colors, logos, favicons, and real media. TrainPilot includes an
-interactive sample workout preview. The portfolio hero is slightly larger,
+existing app colors, logos, favicons, and real media. TrainPilot includes real Run and Gym screenshots in a fixed-size phone frame. The portfolio hero is slightly larger,
 and project entries link to the new landings. Existing legal/support paths
 and legacy /docs routes remain supported.
 
 Validation: lint, TypeScript, and the normal production build pass. Chromium
 checks at 1440px and 375px passed for all three pages, with no broken images,
-horizontal overflow, or browser exceptions. TrainPilot mode switching,
-weight adjustment, and sample set logging work. Static generation includes
+horizontal overflow, or browser exceptions. TrainPilot screenshot switching preserves the phone dimensions. Static generation includes
 all existing app privacy/support/account-deletion pages.
 
 Ghostfleet's subdomain is attached to the existing react-portfolio Vercel
