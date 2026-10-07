@@ -4,6 +4,7 @@ import styles from '../../doc.module.css';
 
 export const metadata: Metadata = {
   title: 'Support | Skipper Browser',
+  alternates: { canonical: 'https://skipper.pablogarces.dev/support' },
   description:
     'Support and contact information for Skipper Browser, a private web browser with built-in content blocking for iOS and Android.',
 };
@@ -67,7 +68,7 @@ export default function SkipperSupport() {
         <h3 className={styles.h3}>Does Skipper collect any data about me?</h3>
         <p>
           No. There are no accounts, no analytics, and no tracking. See the{' '}
-          <a className={styles.link} href="/docs/policy/skipper">
+          <a className={styles.link} href="https://skipper.pablogarces.dev/privacy">
             Privacy Policy
           </a>{' '}
           for the detail, including the single optional network request the app can make and why it

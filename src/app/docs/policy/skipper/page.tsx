@@ -4,6 +4,7 @@ import styles from '../../doc.module.css';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Skipper Browser',
+  alternates: { canonical: 'https://skipper.pablogarces.dev/privacy' },
   description:
     'Privacy Policy for Skipper Browser, a private web browser with built-in content blocking for iOS and Android, published by Pablo Garces.',
 };
