@@ -11,7 +11,6 @@ const screens = {
 
 export default function TrainPilotPreview() {
   const [mode, setMode] = useState<"run" | "gym">("run");
-  const screen = screens[mode];
 
   return <div className={styles.previewWrap} data-mode={mode}>
     <div className={styles.previewSwitch} aria-label="TrainPilot screenshots">
@@ -19,7 +18,11 @@ export default function TrainPilotPreview() {
       <button aria-pressed={mode === "gym"} onClick={() => setMode("gym")}>Gym</button>
     </div>
     <div className={styles.realPhone}>
-      <Image src={screen.src} alt={screen.alt} fill sizes="(max-width: 800px) 290px, 320px" priority />
+      {Object.entries(screens).map(([key, screen]) => (
+        <div key={key} className={styles.screenLayer} data-screen={key} data-active={mode === key} aria-hidden={mode !== key}>
+          <Image src={screen.src} alt={screen.alt} fill sizes="(max-width: 800px) 290px, 280px" priority />
+        </div>
+      ))}
     </div>
     <p className={styles.previewCaption}>Actual app screens · {mode === "run" ? "Run home" : "Gym workout"}</p>
   </div>;
