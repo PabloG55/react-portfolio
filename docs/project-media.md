@@ -18,3 +18,21 @@ Project descriptions were checked against the current local documentation and Gi
 Each project has a GIF link. Recorded and screenshot media use silent MP4s in the page for smaller transfers and reliable play/pause controls. Videos play only while visible, pause offscreen, and do not autoplay when reduced motion is requested. Architecture diagrams advance only when a visitor chooses a step.
 
 Media lives in `public/projects/<project>/`. To replace a walkthrough, update `demo.mp4`, `demo.gif`, and `poster.webp` together. Synthetic walkthroughs should keep their illustrative labels.
+
+## Frontend & client websites — October 14, 2026
+
+A separate frontend section includes Dra. Paula Garcés and Isa Cruz Art. Each
+entry describes its own password-protected admin portal, checked against its
+local README, admin screens, and content models. Only public landing pages are
+recorded; no admin screenshots, messages, analytics records, or credentials are
+included.
+
+| Website | Media source |
+| --- | --- |
+| [Dra. Paula Garcés](https://drapaulagarces.vercel.app/) | Actual desktop landing page, scrolling through the hero, philosophy, treatments, About, and contact sections. |
+| [Isa Cruz Art](https://isacruzart.com/) | Actual desktop landing page, scrolling through the hero, creative disciplines, selected projects, and footer. |
+
+Each preview has a silent MP4, an animated GIF, and a WebP poster in
+`public/projects/paula-garces/` or `public/projects/isa-cruz-art/`. The public
+website recordings move down the landing page and return to its opening view.
+The website links use the live domains supplied by the owner.

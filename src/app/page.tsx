@@ -81,7 +81,7 @@ export default function Home() {
               </a>
             </div>
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-12">
+              <div className="ml-6 flex items-baseline space-x-6 lg:space-x-10">
                 <a
                   className="hover:text-primary text-sm font-medium transition-colors"
                   href="#about" onClick={handleSectionNavigation}
@@ -105,6 +105,12 @@ export default function Home() {
                   href="#projects" onClick={handleSectionNavigation}
                 >
                   Projects
+                </a>
+                <a
+                  className="hover:text-primary text-sm font-medium transition-colors"
+                  href="#frontend" onClick={handleSectionNavigation}
+                >
+                  Frontend
                 </a>
                 <a
                   className="border border-gray-200 dark:border-gray-800 hover:border-primary hover:text-primary px-5 py-2 rounded-full text-sm font-medium transition-all"
@@ -183,6 +189,12 @@ export default function Home() {
             href="#projects" onClick={handleSectionNavigation}
           >
             Projects
+          </a>
+          <a
+            className="hover:text-primary text-lg font-medium transition-colors"
+            href="#frontend" onClick={handleSectionNavigation}
+          >
+            Frontend
           </a>
           <a
             className="hover:text-primary text-lg font-medium transition-colors"
@@ -427,6 +439,19 @@ export default function Home() {
           <div className="space-y-24">
             <ProjectsGallery />
           </div>
+        </div>
+      </section>
+
+      <section className="py-24 md:py-32 bg-white dark:bg-background-dark border-t border-gray-200 dark:border-gray-900" id="frontend">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Reveal className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <p className="font-mono text-xs text-primary mb-4">FRONTEND / CLIENT WEBSITES</p>
+              <h2 className="text-3xl md:text-5xl font-display font-medium text-gray-900 dark:text-white">Websites people can run.</h2>
+            </div>
+            <p className="text-sm text-gray-500 max-w-xs leading-relaxed">Custom websites, each with its own admin portal for managing content.</p>
+          </Reveal>
+          <ProjectsGallery kind="frontend" />
         </div>
       </section>
 

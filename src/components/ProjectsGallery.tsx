@@ -90,6 +90,29 @@ const projects: Project[] = [
   },
 ];
 
+const frontendProjects: Project[] = [
+  {
+    id: "paula-garces", name: "Dra. Paula Garcés", category: "Frontend · Clinic website", status: "Live website",
+    subtitle: "A bilingual clinic website, with the controls behind it.",
+    description: "A Spanish and English website for an aesthetic medicine practice in Galápagos. Animated silk backgrounds, a filterable treatment catalog, individual treatment pages, and WhatsApp links help visitors explore the practice and ask about a consultation.",
+    detail: "Its own password-protected, phone-friendly admin portal manages treatments, categories, photos, translations, page content, contact details, and SEO. It also includes publishing controls, drag-and-drop ordering, revision history with restore, visit and campaign analytics, WhatsApp conversion tracking, and consent-gated Google Analytics, Google Ads, and Meta Pixel integrations.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "GSAP", "WebGL", "Vercel Blob", "Upstash Redis"],
+    href: "https://drapaulagarces.vercel.app/", linkLabel: "Visit website",
+    video: "/projects/paula-garces/demo.mp4", poster: "/projects/paula-garces/poster.webp", gif: "/projects/paula-garces/demo.gif",
+    caption: "Live website · scrolling landing-page walkthrough",
+  },
+  {
+    id: "isa-cruz-art", name: "Isa Cruz Art", category: "Frontend · Artist portfolio", status: "Live website",
+    subtitle: "Isabelly Cruz’s work, across four creative disciplines.",
+    description: "An editorial portfolio for Isabelly Cruz, spanning traditional media, graphic design and animation, 3D, and photography. The landing page leads into discipline collections, individual project galleries, videos, an About page, and a working contact form.",
+    detail: "Its own password-protected admin portal manages projects, images and cropping, gallery order, featured work, publishing, videos, and the About page. Site settings control the palette, fonts, hero copy, animation, and contact links; a messages inbox keeps contact submissions together. Postgres stores the content and Vercel Blob handles uploaded images.",
+    tech: ["Next.js", "React", "TypeScript", "Prisma", "PostgreSQL", "Auth.js", "Vercel Blob"],
+    href: "https://isacruzart.com/", linkLabel: "Visit website",
+    video: "/projects/isa-cruz-art/demo.mp4", poster: "/projects/isa-cruz-art/poster.webp", gif: "/projects/isa-cruz-art/demo.gif",
+    caption: "Live website · scrolling landing-page walkthrough",
+  },
+];
+
 function ProjectMedia({ project }: { project: Project }) {
   const video = useRef<HTMLVideoElement>(null);
   const userPaused = useRef(false);
@@ -129,8 +152,9 @@ function ProjectMedia({ project }: { project: Project }) {
   );
 }
 
-export default function ProjectsGallery() {
-  return <div className="projects-gallery">{projects.map((project, index) => <Reveal key={project.id}>
+export default function ProjectsGallery({ kind = "projects" }: { kind?: "projects" | "frontend" }) {
+  const items = kind === "frontend" ? frontendProjects : projects;
+  return <div className="projects-gallery">{items.map((project, index) => <Reveal key={project.id}>
     <article id={`project-${project.id}`} className="project-row grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
       <div className={`order-2 ${index % 2 === 0 ? "lg:order-1" : "lg:order-2"}`}>
         <div className="project-meta"><span>{project.category}</span><span className={`project-status ${project.status === "On the App Store" ? "status-live" : ""}`}>{project.status === "Private" && <LockKeyhole size={11} />}{project.status}</span></div>
