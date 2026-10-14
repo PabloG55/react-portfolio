@@ -35,4 +35,6 @@ included.
 Each preview has a silent MP4, an animated GIF, and a WebP poster in
 `public/projects/paula-garces/` or `public/projects/isa-cruz-art/`. The public
 website recordings move down the landing page and return to its opening view.
+Continuous browser captures use 25 fps; the GIF exports use 20 fps, with
+roughly 18-second loops and brief pauses at the top and bottom.
 The website links use the live domains supplied by the owner.
