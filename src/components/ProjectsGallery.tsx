@@ -45,12 +45,13 @@ const projects: Project[] = [
     caption: "Recorded terminal demo · Claude, OpenCode, and Codex side by side",
   },
   {
-    id: "hombre-muerto", name: "Hombre Muerto", category: "iOS · Android", status: "Prototype",
+    id: "hombre-muerto", name: "Hombre Muerto", category: "iOS · Android", status: "Native prototype",
     subtitle: "An offline watch alarm for small boats.",
-    description: "A bridge phone asks the officer on watch to check in. Captain and crew phones listen over local Wi-Fi, without an internet connection. Receivers schedule their own native alarms ahead of time; each check-in moves the deadline forward.",
+    description: "A native mobile app with a marine-radar interface: a pre-departure permission checklist, bridge/captain/crew role selection, a bridge countdown and check-in screen, and dedicated receiver screens. Phones communicate over the boat’s local Wi-Fi without an internet connection. Each check-in moves the receivers’ pre-armed alarm deadline forward.",
     detail: "The design makes a missing heartbeat lead to an alarm instead of silence. Built with Swift and Kotlin alarm modules; cross-device failure testing and standalone releases are still in progress.",
-    tech: ["React Native", "Swift", "Kotlin", "UDP"], diagram: "watch", gif: "/projects/hombre-muerto/demo.gif",
-    caption: "Interactive architecture walkthrough · illustrative, not a device recording",
+    tech: ["React Native", "Expo", "Swift", "Kotlin", "UDP"],
+    video: "/projects/hombre-muerto/demo.mp4", poster: "/projects/hombre-muerto/poster.webp", gif: "/projects/hombre-muerto/demo.gif",
+    caption: "Native UI walkthrough · iOS simulator · demo data",
   },
   {
     id: "immich", name: "Immich Sync Assistant", category: "Desktop utility", status: "Open source",
@@ -75,9 +76,9 @@ const projects: Project[] = [
   {
     id: "sec-brain", name: "sec-brain", category: "Personal system", status: "Private",
     subtitle: "Personal agents for creative work, school, and organization.",
-    description: "A private workspace with specialized agents for graphic design, video editing, schoolwork, and day-to-day organization. I can ask an agent to create a visual, edit a video, organize coursework, or plan a project. The system keeps the relevant notes, tasks, and context together in plain Markdown, so the agents can work from the same information.",
+    description: "Built on top of Ghostfleet, sec-brain is a private workspace with specialized agents for graphic design, video editing, schoolwork, and day-to-day organization. I can ask an agent to create a visual, edit a video, organize coursework, or plan a project. The system keeps the relevant notes, tasks, and context together in plain Markdown, so the agents can work from the same information.",
     detail: "Tasks sync to Apple Reminders through macOS automation and reach the iPhone through iCloud. Git provides a private backup. This overview shows the workflow using an invented example; the vault and its contents stay private.",
-    tech: ["Agents", "Markdown", "CLI", "macOS automation", "Apple Reminders"], diagram: "brain", gif: "/projects/sec-brain/demo.gif",
+    tech: ["Ghostfleet", "Agents", "Markdown", "CLI", "macOS automation", "Apple Reminders"], diagram: "brain", gif: "/projects/sec-brain/demo.gif",
     caption: "Interactive workflow · synthetic example · no personal vault data",
   },
   {
@@ -141,7 +142,7 @@ function ProjectMedia({ project }: { project: Project }) {
 
   return (
     <figure className="project-figure">
-      <div className={`project-media ${project.id === "skipper" ? "project-media-phone" : ""}`}>
+      <div className={`project-media ${(project.id === "skipper" || project.id === "hombre-muerto") ? "project-media-phone" : ""}`}>
         {project.diagram ? <SystemPreview kind={project.diagram} /> : project.video ? <>
           <video ref={video} muted loop playsInline preload="none" poster={project.poster} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} aria-label={`${project.name} walkthrough`}><source src={project.video} type="video/mp4" /></video>
           <button onClick={toggleVideo} className="media-play-button" aria-label={`${playing ? "Pause" : "Play"} ${project.name} walkthrough`}>{playing ? <Pause size={14} /> : <Play size={14} />} {playing ? "Pause" : "Play"}</button>

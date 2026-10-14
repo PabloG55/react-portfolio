@@ -9,7 +9,7 @@ Project descriptions were checked against the current local documentation and Gi
 | TrainPilot | Existing English promotional video, exported as a silent MP4 and a shorter GIF. The live [App Store listing](https://apps.apple.com/us/app/trainpilot/id6788894342) confirms the running, gym, and Apple Watch features. |
 | Skipper | Current build 20 iPhone Queue and Profiles screenshots, automatically cycling in the main preview. These show real app UI with staged sample data. |
 | Ghostfleet | The stack recording from the [public project](https://github.com/PabloG55/ghostfleet), trimmed to the section with Claude, OpenCode, and Codex visible side by side. The MP4, GIF, and poster all show the three-agent view. |
-| Hombre Muerto | Illustrative, interactive architecture diagram based on the local product specification and progress document. Its GIF is a sequence of that diagram, not a device recording. The project is marked as a prototype with device failure testing still pending. |
+| Hombre Muerto | Real native screens captured in an isolated iOS simulator: role selection, bridge radar/countdown, and captain/crew receivers. The app’s existing React Native screens are rendered unchanged; an isolated capture harness advances between routes and supplies a reserved demo network address. This is an idle UI preview, not a demonstration of verified alarms or physical-device failure testing. The original app source is not changed. |
 | Immich Sync Assistant | Existing portfolio screenshots showing folder selection, transfer, and verification, assembled into a slideshow. Stack corrected to Tkinter using the [public README](https://github.com/PabloG55/immich_sync_assistant). |
 | markserv-diff | The [public tool](https://github.com/PabloG55/markserv-diff) running locally against a newly created sample Markdown specification and Git history. The GIF switches from the rendered document to its rendered diff. |
 | sec-brain | Illustrative, interactive capture → organize → remind diagram. Every example is invented. No vault files, personal tasks, daily logs, private screenshots, credentials, or private repository URLs were copied into this project. |
@@ -38,3 +38,5 @@ website recordings move down the landing page and return to its opening view.
 Continuous browser captures use 25 fps; the GIF exports use 20 fps, with
 roughly 18-second loops and brief pauses at the top and bottom.
 The website links use the live domains supplied by the owner.
+
+sec-brain is described as a private workspace built on top of Ghostfleet. Only its high-level workflow and invented examples appear in the portfolio.
