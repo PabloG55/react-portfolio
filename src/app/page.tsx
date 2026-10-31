@@ -113,7 +113,7 @@ export default function Home() {
                   Frontend
                 </a>
                 <a
-                  className="border border-gray-200 dark:border-gray-800 hover:border-primary hover:text-primary px-5 py-2 rounded-full text-sm font-medium transition-all"
+                  className="border border-gray-200 dark:border-gray-800 hover:border-primary hover:text-primary px-5 py-2 rounded-full text-sm font-medium transition-colors"
                   href="#contact" onClick={handleSectionNavigation}
                 >
                   Contact
@@ -123,7 +123,7 @@ export default function Home() {
             <div className="-mr-2 flex md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-black dark:hover:text-white focus:outline-none"
+                className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
                 type="button"
                 aria-label="Open navigation"
                 aria-expanded={isMenuOpen}
@@ -149,18 +149,18 @@ export default function Home() {
       <div
         inert={!isMenuOpen}
         aria-hidden={!isMenuOpen}
-        className={`fixed top-0 right-0 h-full w-[250px] bg-zinc-950 text-white border-l border-zinc-900 z-[100] transform transition-transform duration-300 ease-in-out md:hidden flex flex-col ${
+        className={`fixed top-0 right-0 h-full w-[250px] bg-zinc-950 text-white border-l border-zinc-900 z-[100] transform transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] md:hidden flex flex-col ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-900">
-          <span className="font-display font-bold text-sm tracking-widest">
-            MENU
+          <span className="font-display font-medium text-sm">
+            Menu
           </span>
           <button
             aria-label="Close navigation"
             onClick={() => setIsMenuOpen(false)}
-            className="text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+            className="text-gray-400 hover:text-white transition-colors"
           >
             <X size={24} />
           </button>
@@ -237,7 +237,7 @@ export default function Home() {
 
       {/* About Section */}
       <section
-        className="py-32 bg-white dark:bg-background-dark relative"
+        className="py-24 md:py-32 bg-white dark:bg-background-dark relative"
         id="about"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -248,12 +248,12 @@ export default function Home() {
                   fill
                   sizes="(max-width: 1023px) 100vw, 42vw"
                   alt="Pablo Garces Portrait"
-                  className="object-cover object-top w-full h-full opacity-90 transition-all duration-700 grayscale hover:grayscale-0"
+                  className="object-cover object-top w-full h-full opacity-90 transition-[filter] duration-700 grayscale hover:grayscale-0"
                   src="/images/graduation.jpg"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                  <p className="font-mono text-sm uppercase font-bold tracking-widest">
+                  <p className="font-mono text-sm font-medium">
                     Software Engineer UNCC &apos;25
                   </p>
                 </div>
@@ -261,19 +261,19 @@ export default function Home() {
               <div className="absolute -z-10 top-4 right-0 lg:top-8 lg:-right-8 w-full h-full border border-gray-200 dark:border-gray-800 rounded-sm"></div>
             </div>
             <div className="lg:col-span-7 flex flex-col justify-center h-full">
-              <h2 className="text-sm font-mono text-primary mb-4 tracking-widest uppercase">
-                About Me
+              <h2 className="text-sm font-mono text-primary mb-4">
+                About me
               </h2>
               <h3 className="text-3xl md:text-5xl font-display font-medium mb-8 text-gray-900 dark:text-white leading-tight">
                 From a real problem
                 <br />{" "}
-                <span className="text-gray-400 dark:text-gray-600">
+                <span className="text-heading-muted-light dark:text-heading-muted-dark">
                   to working software.
                 </span>
               </h3>
-              <div className="prose prose-lg dark:prose-invert text-gray-600 dark:text-gray-400 font-light mb-12">
+              <div className="max-w-[65ch] text-base md:text-lg leading-relaxed text-gray-600 dark:text-gray-400 mb-12">
                 <p className="mb-4">
-                  I hold a <strong>B.Sc. in Computer Science</strong> and am
+                  I hold a <strong className="font-medium text-gray-900 dark:text-gray-200">B.Sc. in Computer Science</strong> and am
                   currently pursuing my M.S. at the University of North Carolina
                   at Charlotte. I worked as a software engineering intern at
                   Superkey through September 2026. I spend most of my
@@ -287,32 +287,32 @@ export default function Home() {
                   I care about the details that make those tools reliable.
                 </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-gray-100 dark:border-gray-800 pt-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-200 dark:border-gray-800 pt-10">
                 <div>
-                  <div className="text-xs font-mono text-gray-400 dark:text-gray-500 mb-2">
-                    MASTER OF SCIENCE
+                  <div className="text-xs font-mono text-gray-500 dark:text-gray-400 mb-2">
+                    Master of Science
                   </div>
-                  <div className="font-display text-xl text-gray-900 dark:text-white font-semibold">
+                  <div className="font-display text-xl text-gray-900 dark:text-white font-medium">
                     Computer Science
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                     UNC Charlotte
                   </div>
-                  <div className="text-xs text-primary mt-2">
+                  <div className="text-sm text-primary mt-2">
                     Expected Dec 2026
                   </div>
                 </div>
                 <div>
-                  <div className="text-xs font-mono text-gray-400 dark:text-gray-500 mb-2">
-                    BACHELOR OF SCIENCE
+                  <div className="text-xs font-mono text-gray-500 dark:text-gray-400 mb-2">
+                    Bachelor of Science
                   </div>
-                  <div className="font-display text-xl text-gray-900 dark:text-white font-semibold">
+                  <div className="font-display text-xl text-gray-900 dark:text-white font-medium">
                     Computer Science
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                     UNC Charlotte • Summa Cum Laude
                   </div>
-                  <div className="text-xs text-primary mt-2">
+                  <div className="text-sm text-primary mt-2">
                     Graduated Dec 2025
                   </div>
                 </div>
@@ -324,15 +324,15 @@ export default function Home() {
 
       {/* Skills Section */}
       <section
-        className="py-24 bg-surface-light dark:bg-surface-dark border-y border-gray-200 dark:border-gray-800"
+        className="py-24 md:py-32 bg-surface-light dark:bg-surface-dark border-y border-gray-200 dark:border-gray-800"
         id="skills"
       >
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl font-display font-medium text-gray-900 dark:text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <h2 className="text-3xl md:text-5xl font-display font-medium text-gray-900 dark:text-white">
               Tools I work with
             </h2>
-            <p className="mt-4 text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs leading-relaxed">
               The stack behind the apps, tools, and experiments below.
             </p>
           </div>
@@ -342,86 +342,89 @@ export default function Home() {
 
       {/* Experience Section */}
       <section
-        className="py-32 bg-white dark:bg-background-dark"
+        className="py-24 md:py-32 bg-white dark:bg-background-dark"
         id="experience"
       >
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-4">
             <h2 className="text-3xl md:text-5xl font-display font-medium text-gray-900 dark:text-white">
               Experience
             </h2>
-            <p className="text-gray-500 dark:text-gray-500 font-mono text-sm mt-4 md:mt-0">
+            <p className="text-gray-600 dark:text-gray-400 font-mono text-sm">
               /timeline
             </p>
           </div>
-          <div className="relative space-y-12">
-            <div className="absolute left-[19px] top-2 bottom-2 w-[1px] bg-gray-200 dark:bg-gray-800"></div>
+          <div className="relative space-y-16">
+            <div className="absolute left-[19px] top-2 bottom-2 w-px bg-gray-200 dark:bg-gray-800"></div>
 
-            <Reveal className="relative pl-12 group">
-              <div className="absolute left-0 top-1.5 w-[39px] h-[39px] flex items-center justify-center bg-white dark:bg-background-dark z-10 border border-gray-100 dark:border-gray-800 rounded-full group-hover:border-primary transition-colors">
+            <Reveal className="relative pl-14 group">
+              <div className="absolute left-0 top-0 w-[39px] h-[39px] flex items-center justify-center bg-white dark:bg-background-dark z-10 border border-gray-200 dark:border-gray-800 rounded-full group-hover:border-primary transition-colors">
                 <div className="w-2 h-2 rounded-full bg-primary"></div>
               </div>
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary transition-colors">
-                  Software Engineering Intern
-                </h3>
-                <span className="font-mono text-xs text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded mt-2 sm:mt-0">
-                  Nov 2025 - Sep 2026
-                </span>
-              </div>
-              <div className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Superkey Insurance
-              </div>
-              <div className="text-gray-600 dark:text-gray-400 leading-relaxed font-light max-w-2xl space-y-2">
-                <p>
-                  • Spearheaded the end-to-end development of a new product
-                  vertical from 0 to 1, architecting a scalable full-stack
-                  solution that supports complex multi-user workflows, automated
-                  payments, and secure document management.
-                </p>
-                <p>
-                  • Engineered critical backend infrastructure and security
-                  protocols, optimizing system reliability and session
-                  management to support rapid release cycles and ensure high
-                  availability.
-                </p>
-                <p>
-                  • Enhanced the flagship SaaS platform by modernizing core
-                  features, including the implementation of intelligent data
-                  matching algorithms and streamlined document ingestion
-                  workflows to improve user onboarding.
-                </p>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-16">
+                <div className="lg:col-span-4">
+                  <h3 className="text-xl md:text-2xl font-display font-medium text-gray-900 dark:text-white group-hover:text-primary transition-colors">
+                    Software Engineering Intern
+                  </h3>
+                  <div className="mt-2 text-base text-gray-700 dark:text-gray-300">
+                    Superkey Insurance
+                  </div>
+                  <span className="inline-block mt-3 font-mono text-xs text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded tabular-nums">
+                    Nov 2025 – Sep 2026
+                  </span>
+                </div>
+                <ul className="lg:col-span-8 max-w-[72ch] list-disc pl-5 marker:text-gray-400 dark:marker:text-gray-600 space-y-3 text-gray-600 dark:text-gray-400 leading-relaxed">
+                  <li>
+                    Spearheaded the end-to-end development of a new product vertical
+                    from 0 to 1, architecting a scalable full-stack solution that
+                    supports complex multi-user workflows, automated payments, and
+                    secure document management.
+                  </li>
+                  <li>
+                    Engineered critical backend infrastructure and security
+                    protocols, optimizing system reliability and session management
+                    to support rapid release cycles and ensure high availability.
+                  </li>
+                  <li>
+                    Enhanced the flagship SaaS platform by modernizing core
+                    features, including the implementation of intelligent data
+                    matching algorithms and streamlined document ingestion workflows
+                    to improve user onboarding.
+                  </li>
+                </ul>
               </div>
             </Reveal>
 
-            <Reveal className="relative pl-12 group">
-              <div className="absolute left-0 top-1.5 w-[39px] h-[39px] flex items-center justify-center bg-white dark:bg-background-dark z-10 border border-gray-100 dark:border-gray-800 rounded-full group-hover:border-primary transition-colors">
+            <Reveal className="relative pl-14 group">
+              <div className="absolute left-0 top-0 w-[39px] h-[39px] flex items-center justify-center bg-white dark:bg-background-dark z-10 border border-gray-200 dark:border-gray-800 rounded-full group-hover:border-primary transition-colors">
                 <div className="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700"></div>
               </div>
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary transition-colors">
-                  Instructional Assistant
-                </h3>
-                <span className="font-mono text-xs text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded mt-2 sm:mt-0">
-                  Aug 2024 - Dec 2025
-                </span>
-              </div>
-              <div className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">
-                UNC Charlotte • College of Computing
-              </div>
-              <div className="text-gray-600 dark:text-gray-400 leading-relaxed font-light max-w-2xl space-y-2">
-                <p>
-                  • Supported a class of 90 students in mastering C programming
-                  and Assembly language concepts.
-                </p>
-                <p>
-                  • Led lab sessions independently, offering hands-on guidance
-                  with coding exercises and system architecture.
-                </p>
-                <p>
-                  • Provided targeted assignment feedback and held office hours
-                  to resolve course-related inquiries.
-                </p>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-16">
+                <div className="lg:col-span-4">
+                  <h3 className="text-xl md:text-2xl font-display font-medium text-gray-900 dark:text-white group-hover:text-primary transition-colors">
+                    Instructional Assistant
+                  </h3>
+                  <div className="mt-2 text-base text-gray-700 dark:text-gray-300">
+                    UNC Charlotte • College of Computing
+                  </div>
+                  <span className="inline-block mt-3 font-mono text-xs text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded tabular-nums">
+                    Aug 2024 – Dec 2025
+                  </span>
+                </div>
+                <ul className="lg:col-span-8 max-w-[72ch] list-disc pl-5 marker:text-gray-400 dark:marker:text-gray-600 space-y-3 text-gray-600 dark:text-gray-400 leading-relaxed">
+                  <li>
+                    Supported a class of 90 students in mastering C programming and
+                    Assembly language concepts.
+                  </li>
+                  <li>
+                    Led lab sessions independently, offering hands-on guidance with
+                    coding exercises and system architecture.
+                  </li>
+                  <li>
+                    Provided targeted assignment feedback and held office hours to
+                    resolve course-related inquiries.
+                  </li>
+                </ul>
               </div>
             </Reveal>
           </div>
@@ -429,12 +432,12 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className="py-32 bg-gray-50 dark:bg-black/40" id="projects">
+      <section className="py-24 md:py-32 bg-gray-50 dark:bg-black/40" id="projects">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div><p className="font-mono text-xs text-primary mb-4">APPS / DEVELOPER TOOLS / PERSONAL SYSTEMS</p>
+          <Reveal className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div><p className="font-mono text-sm text-primary mb-4">Apps / developer tools / personal systems</p>
             <h2 className="text-3xl md:text-5xl font-display font-medium text-gray-900 dark:text-white">Things I’ve built.</h2></div>
-            <p className="text-sm text-gray-500 max-w-xs leading-relaxed">Shipped apps, open-source tools, and a few projects still on the workbench.</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs leading-relaxed">Shipped apps, open-source tools, and a few projects still on the workbench.</p>
           </Reveal>
           <div className="space-y-24">
             <ProjectsGallery />
@@ -444,12 +447,12 @@ export default function Home() {
 
       <section className="py-24 md:py-32 bg-white dark:bg-background-dark border-t border-gray-200 dark:border-gray-900" id="frontend">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <Reveal className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <p className="font-mono text-xs text-primary mb-4">FRONTEND / CLIENT WEBSITES</p>
+              <p className="font-mono text-sm text-primary mb-4">Frontend / client websites</p>
               <h2 className="text-3xl md:text-5xl font-display font-medium text-gray-900 dark:text-white">Websites people can run.</h2>
             </div>
-            <p className="text-sm text-gray-500 max-w-xs leading-relaxed">Custom websites, each with its own admin portal for managing content.</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs leading-relaxed">Custom websites, each with its own admin portal for managing content.</p>
           </Reveal>
           <ProjectsGallery kind="frontend" />
         </div>
@@ -457,16 +460,16 @@ export default function Home() {
 
       {/* Contact Section */}
       <footer
-        className="py-24 bg-white dark:bg-background-dark border-t border-gray-200 dark:border-gray-800"
+        className="py-24 md:py-32 bg-white dark:bg-background-dark border-t border-gray-200 dark:border-gray-800"
         id="contact"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+          <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">
             <div>
-              <h2 className="text-2xl md:text-3xl font-display font-medium mb-5 text-gray-900 dark:text-white">
+              <h2 className="text-3xl md:text-5xl font-display font-medium mb-6 text-gray-900 dark:text-white">
                 Let&apos;s connect
               </h2>
-              <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400 mb-8 max-w-md">
+              <p className="text-base md:text-lg leading-relaxed text-gray-600 dark:text-gray-400 mb-10 max-w-[45ch]">
                 I&apos;m currently open to internship and full-time opportunities in
                 software engineering.
               </p>
@@ -490,7 +493,7 @@ export default function Home() {
               <div className="flex gap-4">
                 <a
                   target="_blank"
-                  className="w-12 h-12 flex items-center justify-center border border-gray-200 dark:border-gray-800 rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all"
+                  className="w-12 h-12 flex items-center justify-center border border-gray-200 dark:border-gray-800 rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
                   aria-label="LinkedIn"
                   rel="noopener noreferrer"
                   href="https://linkedin.com/in/pablogarces5"
@@ -501,7 +504,7 @@ export default function Home() {
                 </a>
                 <a
                   target="_blank"
-                  className="w-12 h-12 flex items-center justify-center border border-gray-200 dark:border-gray-800 rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all"
+                  className="w-12 h-12 flex items-center justify-center border border-gray-200 dark:border-gray-800 rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
                   aria-label="GitHub"
                   rel="noopener noreferrer"
                   href="https://github.com/PabloG55"
@@ -514,7 +517,7 @@ export default function Home() {
             </div>
 
             <div className="bg-gray-50 dark:bg-surface-dark p-8 md:p-12 rounded-2xl border border-gray-100 dark:border-gray-800">
-              <form onSubmit={handleContactSubmit} className="space-y-6">
+              <form onSubmit={handleContactSubmit} className="space-y-6" aria-busy={formStatus === "submitting"}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label
@@ -525,7 +528,7 @@ export default function Home() {
                     </label>
                     <input
                       required
-                      className="w-full bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg px-4 py-3 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all"
+                      className="w-full bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg px-4 py-3 text-gray-900 dark:text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
                       id="name"
                       name="name"
                       placeholder="John Doe"
@@ -541,7 +544,7 @@ export default function Home() {
                     </label>
                     <input
                       required
-                      className="w-full bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg px-4 py-3 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all"
+                      className="w-full bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg px-4 py-3 text-gray-900 dark:text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
                       id="email"
                       name="email"
                       placeholder="john@example.com"
@@ -558,30 +561,32 @@ export default function Home() {
                   </label>
                   <textarea
                     required
-                    className="w-full bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg px-4 py-3 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all min-h-[150px]"
+                    className="w-full bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg px-4 py-3 text-gray-900 dark:text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors min-h-[150px]"
                     id="message"
                     name="message"
                     placeholder="Tell me about your project..."
                   ></textarea>
                 </div>
 
-                {formStatus === "success" && (
-                  <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-lg text-green-600 dark:text-green-400 text-sm">
-                    Message sent successfully! I&apos;ll get back to you soon.
-                  </div>
-                )}
-                {formStatus === "error" && (
-                  <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-600 dark:text-red-400 text-sm">
-                    Failed to send message. Please try again.
-                  </div>
-                )}
+                <div role="status" aria-live="polite">
+                  {formStatus === "success" && (
+                    <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-lg text-green-700 dark:text-green-400 text-sm">
+                      Message sent. I&apos;ll get back to you soon.
+                    </div>
+                  )}
+                  {formStatus === "error" && (
+                    <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-700 dark:text-red-400 text-sm">
+                      Couldn&apos;t send your message. Try again, or email me at pgarcesb1@gmail.com.
+                    </div>
+                  )}
+                </div>
 
                 <button
                   disabled={formStatus === "submitting"}
-                  className="w-full bg-gray-900 dark:bg-white text-white dark:text-black font-bold py-4 px-6 rounded-lg hover:opacity-90 disabled:opacity-50 transition-all flex items-center justify-center gap-2"
+                  className="w-full bg-gray-900 dark:bg-white text-white dark:text-black font-medium py-4 px-6 rounded-lg hover:opacity-90 disabled:opacity-60 disabled:cursor-wait transition-opacity flex items-center justify-center gap-2"
                   type="submit"
                 >
-                  {formStatus === "submitting" ? "Sending..." : "Send Message"}
+                  {formStatus === "submitting" ? "Sending…" : "Send message"}
                   {formStatus !== "submitting" && (
                     <Send size={14} aria-hidden="true" className="" />
                   )}
@@ -589,9 +594,9 @@ export default function Home() {
               </form>
             </div>
           </Reveal>
-          <div className="mt-24 pt-8 border-t border-gray-100 dark:border-gray-900 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+          <div className="mt-24 pt-8 border-t border-gray-200 dark:border-gray-900 flex flex-col md:flex-row justify-between items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
             <p>© 2026 Pablo Garces. All rights reserved.</p>
-            <p className="mt-2 md:mt-0 font-mono">
+            <p className="font-mono">
               Designed &amp; Built by Pablo.
             </p>
           </div>

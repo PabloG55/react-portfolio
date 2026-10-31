@@ -13,8 +13,19 @@ export default function ParticleNetwork() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    // Size the buffer to the canvas box (the hero), not the window, so particles
+    // aren't stretched; cap the pixel ratio to keep the frame cost bounded.
+    let width = 0;
+    let height = 0;
+    const sizeCanvas = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = canvas.clientWidth || window.innerWidth;
+      height = canvas.clientHeight || window.innerHeight;
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    sizeCanvas();
 
     // Use colors that match the site theme (Tailwind blue-500, purple-500, gray-400)
     const colors = [
@@ -78,13 +89,10 @@ export default function ParticleNetwork() {
     window.addEventListener("mousemove", handleMouseMove);
     document.body.addEventListener("mouseleave", handleMouseLeave);
 
-    const handleResize = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    };
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", sizeCanvas);
 
-    let animationFrameId: number;
+    let animationFrameId = 0;
+    let onScreen = true;
     const maxDistance = 300;
 
     const render = () => {
@@ -147,19 +155,30 @@ export default function ParticleNetwork() {
       animationFrameId = requestAnimationFrame(render);
     };
 
-    const handleMotionChange = () => {
+    // Run the loop only while the hero is on screen, the tab is visible and
+    // motion is allowed.
+    const sync = () => {
       cancelAnimationFrame(animationFrameId);
+      animationFrameId = 0;
       if (motion.matches) ctx.clearRect(0, 0, width, height);
-      else render();
+      else if (onScreen && !document.hidden) render();
     };
-    motion.addEventListener("change", handleMotionChange);
-    render();
+    const observer = new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+      sync();
+    });
+    observer.observe(canvas);
+    motion.addEventListener("change", sync);
+    document.addEventListener("visibilitychange", sync);
+    sync();
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       document.body.removeEventListener("mouseleave", handleMouseLeave);
-      window.removeEventListener("resize", handleResize);
-      motion.removeEventListener("change", handleMotionChange);
+      window.removeEventListener("resize", sizeCanvas);
+      motion.removeEventListener("change", sync);
+      document.removeEventListener("visibilitychange", sync);
+      observer.disconnect();
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

@@ -162,7 +162,7 @@ export default function ProjectsGallery({ kind = "projects" }: { kind?: "project
         <h3 className="text-4xl md:text-5xl font-display font-medium tracking-tight text-gray-900 dark:text-white mb-4">{project.name}</h3>
         <p className="text-xl text-gray-700 dark:text-gray-300 mb-5 leading-snug">{project.subtitle}</p>
         <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-4">{project.description}</p>
-        <p className="text-sm text-gray-500 dark:text-gray-500 leading-relaxed mb-6">{project.detail}</p>
+        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-6">{project.detail}</p>
         <ul className="project-tech" aria-label={`${project.name} technologies`}>{project.tech.map(tech => <li key={tech}>{tech}</li>)}</ul>
         <div className="flex flex-wrap gap-6">{project.href && <a target={project.href.startsWith("http") ? "_blank" : undefined} rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined} href={project.href} className="project-link">{project.linkLabel}<ArrowUpRight size={17} /></a>}{project.website && <a href={project.website} className="project-link">Explore the app<ArrowUpRight size={17} /></a>}</div>
       </div>
