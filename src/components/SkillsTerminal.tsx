@@ -52,10 +52,13 @@ export default function SkillsTerminal() {
         <button id={`${id}-workflow-tab`} role="tab" tabIndex={view === "workflow" ? 0 : -1} aria-selected={view === "workflow"} aria-controls={`${id}-workflow-panel`} onClick={() => setView("workflow")}><Terminal size={14} /> workflow.sh</button>
         {view === "stack" && <button className="terminal-copy" onClick={copy} aria-label={copyState}>{copyState === "Copied" ? <Check size={14} /> : <Copy size={14} />}<span aria-live="polite">{copyState}</span></button>}
       </div>
-      <div id={`${id}-stack-panel`} role="tabpanel" aria-labelledby={`${id}-stack-tab`} hidden={view !== "stack"} tabIndex={0} className="terminal-code">
+      {/* Both panels share one grid cell, so the slot is always as tall as the
+          tallest panel and switching tabs never moves the page. */}
+      <div className="terminal-panels">
+      <div id={`${id}-stack-panel`} role="tabpanel" aria-labelledby={`${id}-stack-tab`} aria-hidden={view !== "stack"} tabIndex={view === "stack" ? 0 : -1} className={`terminal-code ${view !== "stack" ? "is-inactive" : ""}`}>
         <pre aria-label="My technical stack"><code>{lines.map((line, index) => <span className="terminal-line" key={index}><span className="line-number" aria-hidden="true">{index + 1}</span><span>{highlight(line)}</span>{"\n"}</span>)}</code></pre>
       </div>
-      <div id={`${id}-workflow-panel`} role="tabpanel" aria-labelledby={`${id}-workflow-tab`} hidden={view !== "workflow"} tabIndex={0} className="terminal-workflow">
+      <div id={`${id}-workflow-panel`} role="tabpanel" aria-labelledby={`${id}-workflow-tab`} aria-hidden={view !== "workflow"} tabIndex={view === "workflow" ? 0 : -1} className={`terminal-workflow ${view !== "workflow" ? "is-inactive" : ""}`}>
         <p className="syntax-comment"># How I work, from an idea to something you can use.</p>
         {[
           ["read the problem", "Start with the constraints and write down what has to work."],
@@ -64,6 +67,7 @@ export default function SkillsTerminal() {
           ["ship and keep improving", "Use it myself. Read the feedback. Fix what gets in the way."],
         ].map(([command, result]) => <div className="workflow-command" key={command}><p><span className="syntax-key">❯</span> {command}</p><p className="syntax-comment">{result}</p></div>)}
         <span className="syntax-key" aria-hidden="true">❯ <span className="terminal-cursor" /></span>
+      </div>
       </div>
       <div className="terminal-statusbar"><span><span className="terminal-status-dot" /> main</span><span>{view === "stack" ? "JSON · UTF-8" : "Shell · working notes"}</span></div>
     </div>
