@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight, Mail, Menu, Phone, Send, X } from "lucide-react";
+import { Mail, Menu, Phone, Send, X } from "lucide-react";
 import ProjectsGallery from "@/components/ProjectsGallery";
-import ParticleNetwork from "@/components/ParticleNetwork";
+import Hero from "@/components/Hero";
 import SkillsTerminal from "@/components/SkillsTerminal";
 import Reveal from "@/components/Reveal";
 
@@ -84,6 +84,18 @@ export default function Home() {
               <div className="ml-6 flex items-baseline space-x-6 lg:space-x-10">
                 <a
                   className="hover:text-primary text-sm font-medium transition-colors"
+                  href="#projects" onClick={handleSectionNavigation}
+                >
+                  Projects
+                </a>
+                <a
+                  className="hover:text-primary text-sm font-medium transition-colors"
+                  href="#frontend" onClick={handleSectionNavigation}
+                >
+                  Frontend
+                </a>
+                <a
+                  className="hover:text-primary text-sm font-medium transition-colors"
                   href="#about" onClick={handleSectionNavigation}
                 >
                   About
@@ -99,18 +111,6 @@ export default function Home() {
                   href="#experience" onClick={handleSectionNavigation}
                 >
                   Experience
-                </a>
-                <a
-                  className="hover:text-primary text-sm font-medium transition-colors"
-                  href="#projects" onClick={handleSectionNavigation}
-                >
-                  Projects
-                </a>
-                <a
-                  className="hover:text-primary text-sm font-medium transition-colors"
-                  href="#frontend" onClick={handleSectionNavigation}
-                >
-                  Frontend
                 </a>
                 <a
                   className="border border-gray-200 dark:border-gray-800 hover:border-primary hover:text-primary px-5 py-2 rounded-full text-sm font-medium transition-colors"
@@ -168,6 +168,18 @@ export default function Home() {
         <div className="flex flex-col p-6 space-y-6 mt-4">
           <a
             className="hover:text-primary text-lg font-medium transition-colors"
+            href="#projects" onClick={handleSectionNavigation}
+          >
+            Projects
+          </a>
+          <a
+            className="hover:text-primary text-lg font-medium transition-colors"
+            href="#frontend" onClick={handleSectionNavigation}
+          >
+            Frontend
+          </a>
+          <a
+            className="hover:text-primary text-lg font-medium transition-colors"
             href="#about" onClick={handleSectionNavigation}
           >
             About
@@ -186,18 +198,6 @@ export default function Home() {
           </a>
           <a
             className="hover:text-primary text-lg font-medium transition-colors"
-            href="#projects" onClick={handleSectionNavigation}
-          >
-            Projects
-          </a>
-          <a
-            className="hover:text-primary text-lg font-medium transition-colors"
-            href="#frontend" onClick={handleSectionNavigation}
-          >
-            Frontend
-          </a>
-          <a
-            className="hover:text-primary text-lg font-medium transition-colors"
             href="#contact" onClick={handleSectionNavigation}
           >
             Contact
@@ -205,39 +205,39 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Hero Section */}
-      <section className="portfolio-hero relative isolate flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <ParticleNetwork />
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-        </div>
-        <div className="hero-content relative z-10 text-center px-6 mx-auto">
-          <h1 className="hero-title font-display font-medium text-gray-900 dark:text-white">
-            Always
-            <br />
-            <span className="hero-title-secondary font-light">
-              Building.
-            </span>
-          </h1>
-          <p className="hero-intro text-gray-600 dark:text-gray-400">
-            Pablo Garces. Software engineer.
-            <br />
-            M.S. student at UNC Charlotte.
-          </p>
-          <div className="hero-links">
-            <a href="#projects" onClick={handleSectionNavigation} className="hero-project-link">
-              View projects <ArrowUpRight size={16} aria-hidden="true" />
-            </a>
-            <a href="https://github.com/PabloG55" target="_blank" rel="noopener noreferrer" className="hero-github-link">
-              GitHub <ArrowUpRight size={16} aria-hidden="true" />
-            </a>
+      <Hero onNavigate={handleSectionNavigation} />
+
+      {/* Projects Section */}
+      <section className="py-24 md:py-32 bg-gray-50 dark:bg-black/40" id="projects">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Reveal className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div><p className="font-mono text-sm text-primary mb-4">Apps / developer tools / personal systems</p>
+            <h2 className="text-3xl md:text-5xl font-display font-medium text-gray-900 dark:text-white">Things I’ve built.</h2></div>
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs leading-relaxed">Shipped apps, open-source tools, and a few projects still on the workbench.</p>
+          </Reveal>
+          <div className="space-y-24">
+            <ProjectsGallery />
           </div>
+        </div>
+      </section>
+
+      {/* Frontend Section */}
+      <section className="py-24 md:py-32 bg-white dark:bg-background-dark border-t border-gray-200 dark:border-gray-900" id="frontend">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Reveal className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <p className="font-mono text-sm text-primary mb-4">Frontend / client websites</p>
+              <h2 className="text-3xl md:text-5xl font-display font-medium text-gray-900 dark:text-white">Websites people can run.</h2>
+            </div>
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs leading-relaxed">Custom websites, each with its own admin portal for managing content.</p>
+          </Reveal>
+          <ProjectsGallery kind="frontend" />
         </div>
       </section>
 
       {/* About Section */}
       <section
-        className="py-24 md:py-32 bg-white dark:bg-background-dark relative"
+        className="py-24 md:py-32 bg-white dark:bg-background-dark border-t border-gray-200 dark:border-gray-900 relative"
         id="about"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -428,33 +428,6 @@ export default function Home() {
               </div>
             </Reveal>
           </div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section className="py-24 md:py-32 bg-gray-50 dark:bg-black/40" id="projects">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div><p className="font-mono text-sm text-primary mb-4">Apps / developer tools / personal systems</p>
-            <h2 className="text-3xl md:text-5xl font-display font-medium text-gray-900 dark:text-white">Things I’ve built.</h2></div>
-            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs leading-relaxed">Shipped apps, open-source tools, and a few projects still on the workbench.</p>
-          </Reveal>
-          <div className="space-y-24">
-            <ProjectsGallery />
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 md:py-32 bg-white dark:bg-background-dark border-t border-gray-200 dark:border-gray-900" id="frontend">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <p className="font-mono text-sm text-primary mb-4">Frontend / client websites</p>
-              <h2 className="text-3xl md:text-5xl font-display font-medium text-gray-900 dark:text-white">Websites people can run.</h2>
-            </div>
-            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs leading-relaxed">Custom websites, each with its own admin portal for managing content.</p>
-          </Reveal>
-          <ProjectsGallery kind="frontend" />
         </div>
       </section>
 
