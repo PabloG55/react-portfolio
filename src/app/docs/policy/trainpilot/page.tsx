@@ -13,7 +13,7 @@ export const dynamic = 'force-static';
 
 export default function TrainPilotPrivacy() {
   return (
-    <DocPage appName="TrainPilot" title="Privacy Policy" lastUpdated="October 7, 2026">
+    <DocPage appName="TrainPilot" title="Privacy Policy" lastUpdated="November 1, 2026">
       <section>
         <p>
           <strong>TrainPilot</strong> is a running and gym training app for iOS and Android (application identifier{' '}
@@ -108,12 +108,47 @@ export default function TrainPilotPrivacy() {
         <h3 className={styles.h3}>Usage and diagnostic data</h3>
         <p>
           App interaction, screen and lifecycle events, diagnostic records, crash reports, and
-          error telemetry help us understand user flows and diagnose failures. TrainPilot also
-          enables masked session replay through PostHog to diagnose user flows and UI failures.
-          Text inputs, rendered text, images, and sandboxed views are masked. Network telemetry
-          and console-log capture are disabled. Masking the replay does not make all analytics
-          anonymous: PostHog receives your account UUID and email address.
+          error telemetry help us understand user flows and diagnose failures.
         </p>
+
+        <h3 className={styles.h3}>Session recordings</h3>
+        <p>
+          Unless you turn it off, TrainPilot records how you use the app so we can find and fix
+          problems. Here is exactly what that means:
+        </p>
+        <ul className={styles.ul}>
+          <li className={styles.li}>
+            <strong>What is recorded:</strong> a visual reconstruction of the app screens you see and
+            the taps and scrolls you make, together with the time and the app version. It is not a
+            camera or microphone recording, and nothing outside TrainPilot is recorded.
+          </li>
+          <li className={styles.li}>
+            <strong>What is always hidden:</strong> anything you type (including sign-in codes and any
+            password or payment field), photos and images, and your health values: heart rate,
+            calories, body data such as weight and age, and sleep. These appear as solid blocks in
+            the recording. Network traffic and app logs are not captured.
+          </li>
+          <li className={styles.li}>
+            <strong>Which tool:</strong> PostHog (session replay), hosted in the United States. The
+            recording is linked to your account identifier and email address, like the rest of our
+            PostHog analytics.
+          </li>
+          <li className={styles.li}>
+            <strong>Why:</strong> to see where the app breaks or confuses people and fix it. Recordings
+            are never used for advertising and are never sold.
+          </li>
+          <li className={styles.li}>
+            <strong>How long:</strong> recordings are kept for 30 days and then deleted automatically.
+            They are also deleted on request (see below).
+          </li>
+          <li className={styles.li}>
+            <strong>How to opt out:</strong> in the app, go to{' '}
+            <strong>Profile &rarr; Preferences &rarr; Privacy</strong> and turn off{' '}
+            <strong>Share screen recordings</strong>. It takes effect immediately and stays off on that
+            device. You can also ask us to delete recordings already made by emailing{' '}
+            <a className={styles.link} href="mailto:pasebarona@gmail.com">pasebarona@gmail.com</a>.
+          </li>
+        </ul>
       </section>
 
       <section>
@@ -129,13 +164,11 @@ export default function TrainPilotPrivacy() {
             hosts essentially all of the data described above and is our primary processor.
           </li>
           <li className={styles.li}>
-            <strong>PostHog</strong> — product analytics, masked session replay, and error telemetry.
-            PostHog receives your account identifier (UUID) <strong>and your email address</strong>,
-            together with limited app interaction, screen, lifecycle and workout-flow events.
-            Masked replay is enabled to help diagnose user flows and UI failures; text inputs,
-            rendered text, images, and sandboxed views are masked. Network telemetry and
-            console-log capture are disabled. Our analytics events do not include GPS coordinates
-            or heart-rate measurements.
+            <strong>PostHog</strong> — product analytics, session recordings (see &quot;Session
+            recordings&quot; above), and error telemetry. PostHog receives your account identifier
+            (UUID) <strong>and your email address</strong>, together with limited app interaction,
+            screen, lifecycle and workout-flow events. Our analytics events do not include GPS
+            coordinates or heart-rate measurements, and health values are hidden in recordings.
           </li>
           <li className={styles.li}>
             <strong>Sentry</strong> — crash and error reporting. Sentry receives your opaque account
@@ -174,10 +207,15 @@ export default function TrainPilotPrivacy() {
           <li className={styles.li}>
             <strong>Delete your account from inside the app:</strong> go to{' '}
             <strong>Profile &rarr; Delete Account</strong>. This permanently deletes your account,
-            profile, account-linked training plans and workout history. Read the{' '}
+            profile, account-linked training plans, workout history, your activity photos and
+            avatar, and your diagnostic records. Read the{' '}
             <a className={styles.link} href="https://trainpilot.pablogarces.dev/delete-account">TrainPilot account deletion page</a>{' '}
             for the full scope, records that are handled separately, and how to request deletion
             by email without reinstalling the app.
+          </li>
+          <li className={styles.li}>
+            <strong>Turn off session recordings</strong> at any time in{' '}
+            <strong>Profile &rarr; Preferences &rarr; Privacy</strong>.
           </li>
           <li className={styles.li}>
             You can export and review your data, and you can disconnect Apple Health, Strava and
@@ -216,8 +254,10 @@ export default function TrainPilotPrivacy() {
       <section>
         <h2 className={styles.h2}>4. Children</h2>
         <p>
-          TrainPilot is intended for teens and adults aged 13 and older. It is not directed to
-          children under 13, and we do not knowingly collect data from them.
+          TrainPilot is intended for people aged 16 and older, and the app asks you to confirm your
+          age before you sign in. It is not directed to anyone under 16, and we do not knowingly
+          collect data from them. If you believe someone under 16 has an account, email us and we
+          will delete it.
         </p>
       </section>
 
