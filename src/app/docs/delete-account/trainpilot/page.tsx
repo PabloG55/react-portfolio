@@ -14,7 +14,7 @@ const requestEmail = 'mailto:pasebarona@gmail.com?subject=TrainPilot%20account%2
 
 export default function TrainPilotAccountDeletion() {
   return (
-    <DocPage appName="TrainPilot" title="Delete Your TrainPilot Account" lastUpdated="October 7, 2026">
+    <DocPage appName="TrainPilot" title="Delete Your TrainPilot Account" lastUpdated="November 1, 2026">
       <section className={styles.requestPanel}>
         <p>
           You can request permanent deletion of your <strong>TrainPilot</strong> account and
@@ -60,8 +60,8 @@ export default function TrainPilotAccountDeletion() {
         <h2 className={styles.h2}>Data handled separately</h2>
         <p>The in-app account-deletion operation does not automatically erase every record stored outside the account database:</p>
         <ul className={styles.ul}>
-          <li className={styles.li}><strong>Uploaded files:</strong> activity photos and avatar files stored separately may require additional cleanup.</li>
-          <li className={styles.li}><strong>Diagnostic records:</strong> the account link is removed when the account is deleted, but the diagnostic records themselves may remain.</li>
+          <li className={styles.li}><strong>Uploaded files:</strong> your activity photos and avatar are deleted from storage together with the account.</li>
+          <li className={styles.li}><strong>Diagnostic records:</strong> deleted together with the account.</li>
           <li className={styles.li}><strong>Analytics, error reports, and backups:</strong> deleting the account does not automatically erase records held by PostHog, Sentry, or existing backups. Include these in your email request so their handling can be reviewed.</li>
           <li className={styles.li}><strong>Exported activities:</strong> workouts already copied to Apple Health, Strava, or intervals.icu are not removed by deleting your TrainPilot account. Manage those copies in the respective service.</li>
         </ul>
