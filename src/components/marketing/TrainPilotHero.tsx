@@ -5,8 +5,8 @@ import { useState } from "react";
 import styles from "./trainpilot.module.css";
 
 const screens = {
-  run: { src: "/marketing/trainpilot-hi1.webp", alt: "TrainPilot Run home: this week's schedule and today's threshold intervals workout" },
-  gym: { src: "/marketing/trainpilot-hi2.webp", alt: "TrainPilot gym summary for Push Day: 55 minutes, 12 sets, 3,621 kg and the muscles worked" },
+  run: { src: "/marketing/trainpilot-run-home.webp", alt: "TrainPilot Run home: this week's schedule and today's threshold intervals workout" },
+  gym: { src: "/marketing/trainpilot-gym-workout-detail.webp", alt: "TrainPilot gym summary for Push Day: 55 minutes, 12 sets, 3,621 kg and the muscles worked" },
 };
 
 export default function TrainPilotHero({ store }: { store: string }) {

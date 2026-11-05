@@ -111,13 +111,22 @@
 /* Watch and setup */
 .band { background: var(--ink); color: var(--paper); }
 .band .lead, .band .facts p { color: #B4B7AE; }
-.bandText { grid-column: 1 / span 6; }
-.bandList { grid-column: 8 / span 5; }
-.tools { list-style: none; margin: 0; padding: 0; }
-.tools li { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 20px 0; border-bottom: 1px solid #2B2F28; }
-.tools li:first-child { padding-top: 0; }
-.tools strong { font-family: var(--font-display), sans-serif; font-weight: 600; font-size: clamp(24px, 2.2vw, 32px); letter-spacing: -.02em; }
-.tools span { color: #B4B7AE; font-size: 15px; text-align: right; }
+.bandText { grid-column: 1 / span 6; align-self: center; }
+.labelWatch { color: var(--paper); }
+/* Real Watch captures at half their pixel size, so they stay sharp on 2x screens. */
+.watches { grid-column: 8 / span 5; display: flex; align-items: flex-end; justify-content: flex-end; gap: var(--gap); }
+.watch { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.watchRun { width: 224px; }
+.watchGym { width: 178px; }
+.watchCase { width: 100%; padding: 8px; border-radius: 28px; background: #262A24; }
+.watchCase img { display: block; width: 100%; height: auto; border-radius: 20px; }
+.watch figcaption { color: #B4B7AE; font-size: 14px; }
+.toolsRow { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; margin-top: 56px; }
+.toolsHead { grid-column: 1 / -1; margin: 0 0 24px; color: #B4B7AE; font-size: 16px; font-weight: 600; }
+.tools { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; list-style: none; margin: 0; padding: 0; }
+.tools li { grid-column: span 4; padding-top: 24px; border-top: 1px solid #2B2F28; }
+.tools strong { display: block; font-family: var(--font-display), sans-serif; font-weight: 600; font-size: clamp(24px, 2.2vw, 32px); letter-spacing: -.02em; }
+.tools p { margin: 8px 0 0; color: #B4B7AE; font-size: 16px; line-height: 1.6; }
 .band .h2 { color: var(--paper); }
 
 /* Questions */
@@ -146,7 +155,9 @@
   .runShot { grid-column: 9 / span 4; justify-content: flex-end; }
   .gymShot { grid-column: 1 / span 4; }
   .gymText { grid-column: 6 / span 7; }
-  .bandList { grid-column: 9 / span 4; }
+  .watches { grid-column: 8 / span 5; }
+  .watchRun { width: 192px; }
+  .watchGym { width: 152px; }
   .facts { grid-template-columns: 1fr; }
 }
 
@@ -173,7 +184,7 @@
   .center { order: 3; }
   .phone { height: auto; width: min(300px, 78vw); }
   .grid { grid-template-columns: 1fr; row-gap: 56px; }
-  .runText, .runShot, .gymShot, .gymText, .bandText, .bandList, .faqHead, .faqList { grid-column: 1; grid-row: auto; }
+  .runText, .runShot, .gymShot, .gymText, .bandText, .watches, .toolsRow, .faqHead, .faqList { grid-column: 1; grid-row: auto; }
   .gymText { order: 1; }
   .gymShot { order: 2; }
   .shotPhone { width: min(280px, 72vw); }
@@ -181,7 +192,12 @@
   .lead { font-size: 16px; }
   .facts { margin-top: 36px; gap: 24px; }
   .faqList summary { font-size: 16px; min-height: 64px; }
-  .tools span { font-size: 14px; }
+  .watches { justify-content: center; gap: 5%; }
+  .watchRun { width: 52%; max-width: 224px; }
+  .watchGym { width: 41%; max-width: 178px; }
+  .toolsRow, .tools { display: block; margin-top: 0; }
+  .tools li { padding: 20px 0; }
+  .tools li + li { margin-top: 0; }
 }
 
 @media (max-width: 600px) {
@@ -194,4 +210,3 @@
   .field span, .switch::before, .switch button, .screenLayer, .button, .faqList summary::after { transition: none; }
   .screenLayer[data-screen] { transform: none; }
 }
-.toolsNote { margin-top: 24px; font-size: 16px; }

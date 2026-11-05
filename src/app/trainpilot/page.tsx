@@ -10,13 +10,13 @@ import t from '@/components/marketing/trainpilot.module.css';
 const body = localFont({ src: [{ path: '../../../public/marketing/fonts/HankenGrotesk_400Regular.ttf', weight: '400' }, { path: '../../../public/marketing/fonts/HankenGrotesk_600SemiBold.ttf', weight: '600' }], variable: '--font-body', display: 'swap' });
 const display = localFont({ src: '../../../public/marketing/fonts/SchibstedGrotesk_600SemiBold.ttf', weight: '600', variable: '--font-display', display: 'swap' });
 const store = 'https://apps.apple.com/us/app/trainpilot/id6788894342';
-export const metadata: Metadata = { metadataBase: new URL('https://trainpilot.pablogarces.dev'), title: 'TrainPilot | Your runs. Your lifts. Your next step.', description: 'Personal running plans, spoken coaching, gym progression, and Apple Watch workouts. TrainPilot brings your training together.', alternates: { canonical: 'https://trainpilot.pablogarces.dev' }, icons: { icon: '/marketing/trainpilot-favicon.png', apple: '/images/trainpilot-icon.webp' }, openGraph: { title: 'TrainPilot — Your runs. Your lifts. Your next step.', description: 'Running and strength training, together.', url: 'https://trainpilot.pablogarces.dev', images: ['/marketing/trainpilot-hi1.webp'] } };
+export const metadata: Metadata = { metadataBase: new URL('https://trainpilot.pablogarces.dev'), title: 'TrainPilot | Your runs. Your lifts. Your next step.', description: 'Personal running plans, spoken coaching, gym progression, and Apple Watch workouts. TrainPilot brings your training together.', alternates: { canonical: 'https://trainpilot.pablogarces.dev' }, icons: { icon: '/marketing/trainpilot-favicon.png', apple: '/images/trainpilot-icon.webp' }, openGraph: { title: 'TrainPilot — Your runs. Your lifts. Your next step.', description: 'Running and strength training, together.', url: 'https://trainpilot.pablogarces.dev', images: ['/marketing/trainpilot-run-home.webp'] } };
 
 const runFacts = [
   { title: 'GPS pace and intervals', text: 'Follow your pace and each interval outdoors, one segment at a time.' },
   { title: 'Spoken coaching', text: 'Hear what comes next without looking down at your phone.' },
   { title: 'Treadmill sessions', text: 'Take the session indoors when the day calls for it.' },
-  { title: 'Heart rate', text: 'Pair a Bluetooth heart-rate sensor and keep it with the run.' },
+  { title: 'Heart rate', text: 'Pair a Bluetooth heart-rate strap and see it during the run.' },
 ];
 const gymFacts = [
   { title: 'Progression', text: 'Uses your completed lifts to suggest when to add weight and when to back off.' },
@@ -24,7 +24,11 @@ const gymFacts = [
   { title: 'Say the set', text: 'Tap the mic and say your reps and weight. Add a set, adjust rest or undo by voice.' },
   { title: 'Supersets and rest timers', text: 'Warm-ups, supersets and rest timers keep the session together.' },
 ];
-const tools = ['Apple Health', 'Strava', 'intervals.icu', 'Bluetooth heart-rate sensors'];
+const tools = [
+  { name: 'Apple Health', text: 'Imports your completed runs and their routes.' },
+  { name: 'intervals.icu', text: 'Connect your account to import completed runs.' },
+  { name: 'Heart-rate straps', text: 'Pair a strap over Bluetooth for live heart rate.' },
+];
 const questions = [
   { q: 'Can I use it for running and the gym?', a: <>Yes. Switch between running and gym modes in the same app. Each has its own plans, workout tools, and history.</> },
   { q: 'Does it work with Apple Watch?', a: <>Yes. TrainPilot has an Apple Watch companion for running and gym sessions.</> },
@@ -38,7 +42,7 @@ function Facts({ items }: { items: { title: string; text: string }[] }) {
 }
 
 function Shot({ src, alt, caption, side }: { src: string; alt: string; caption: string; side: 'run' | 'gym' }) {
-  return <div className={`${t.shot} ${side === 'run' ? t.runShot : t.gymShot}`}><Reveal className={t.shotWrap}><div className={t.shotPhone}><Image src={src} alt={alt} width={461} height={1000} sizes="(max-width: 860px) 280px, 340px" /></div><p className={t.shotCaption}>{caption}</p></Reveal></div>;
+  return <div className={`${t.shot} ${side === 'run' ? t.runShot : t.gymShot}`}><Reveal className={t.shotWrap}><div className={t.shotPhone}><Image src={src} alt={alt} width={1080} height={2341} sizes="(max-width: 860px) 280px, 340px" /></div><p className={t.shotCaption}>{caption}</p></Reveal></div>;
 }
 
 export default function TrainPilotHome() { return <div id="top" className={`${s.page} ${t.page} ${body.variable} ${display.variable}`}>
@@ -47,15 +51,19 @@ export default function TrainPilotHome() { return <div id="top" className={`${s.
 <TrainPilotHero store={store} />
 <section id="run" className={t.section}><div className={`${t.container} ${t.grid}`}>
   <Reveal className={t.runText}><span className={`${t.label} ${t.labelRun}`}>Run</span><h2 className={`${t.display} ${t.h2}`}>Run toward a goal.</h2><p className={t.lead}>A plan built around your race, your current times, and the days you have. Know what today asks of you, and see the weeks ahead.</p><Facts items={runFacts} /></Reveal>
-  <Shot side="run" src="/marketing/trainpilot-hi3.webp" alt="TrainPilot plan screen: a 6-week 5K progression with race day on October 25 and the month's training days" caption="Your plan, week by week" />
+  <Shot side="run" src="/marketing/trainpilot-run-plan.webp" alt="TrainPilot plan screen: a 6-week 5K progression with race day on October 25 and the month's training days" caption="Your plan, week by week" />
 </div></section>
 <section id="gym" className={t.section}><div className={`${t.container} ${t.grid}`}>
-  <Shot side="gym" src="/marketing/trainpilot-hi4.webp" alt="TrainPilot gym history: Push, Leg and Pull days with time, sets and volume" caption="Every session, with its volume" />
+  <Shot side="gym" src="/marketing/trainpilot-gym-history.webp" alt="TrainPilot gym history: Push, Leg and Pull days with time, sets and volume" caption="Every session, with its volume" />
   <Reveal className={t.gymText}><span className={`${t.label} ${t.labelGym}`}>Gym</span><h2 className={`${t.display} ${t.h2}`}>Lift with a next step.</h2><p className={t.lead}>Log sets, reps, weight, and rest. Your next session starts with your last one.</p><Facts items={gymFacts} /></Reveal>
 </div></section>
 <section id="watch" className={`${t.section} ${t.band}`}><div className={`${t.container} ${t.grid}`}>
-  <Reveal className={t.bandText}><h2 className={`${t.display} ${t.h2}`}>Leave your phone behind.</h2><p className={t.lead}>Start and pause runs on Apple Watch, check your pace, and log gym sets from your wrist. Keep your attention on the workout.</p></Reveal>
-  <Reveal className={t.bandList}><ul className={t.tools} aria-label="Works with">{tools.map(tool => <li key={tool}><strong>{tool}</strong></li>)}</ul><p className={`${t.lead} ${t.toolsNote}`}>Connect Apple Health, Strava, or intervals.icu, and pair a heart-rate sensor. Your workouts stay alongside the tools you already use.</p></Reveal>
+  <Reveal className={t.bandText}><span className={`${t.label} ${t.labelWatch}`}>Apple Watch</span><h2 className={`${t.display} ${t.h2}`}>Keep your phone in your pocket.</h2><p className={t.lead}>Pause a run and check your pace and heart rate on Apple Watch. In the gym, log the set from your wrist, or tap Voice and say it. Your iPhone fills it in.</p></Reveal>
+  <Reveal className={t.watches}>
+    <figure className={`${t.watch} ${t.watchRun}`}><div className={t.watchCase}><Image src="/marketing/trainpilot-watch-run.webp" alt="TrainPilot on Apple Watch during a run: 5:00 per km pace, 2.45 km, 12:34 and a heart rate of 142, with a Pause button" width={208} height={248} /></div><figcaption>Running</figcaption></figure>
+    <figure className={`${t.watch} ${t.watchGym}`}><div className={t.watchCase}><Image src="/marketing/trainpilot-watch-gym.webp" alt="TrainPilot on Apple Watch in the gym: set 1 of 3 of dumbbell bench press, 8 reps, with Log Set and Voice buttons" width={162} height={197} /></div><figcaption>Gym</figcaption></figure>
+  </Reveal>
+  <div className={t.toolsRow}><h3 className={t.toolsHead}>Works with</h3><ul className={t.tools}>{tools.map(tool => <li key={tool.name}><strong>{tool.name}</strong><p>{tool.text}</p></li>)}</ul></div>
 </div></section>
 <section id="questions" className={t.section}><div className={`${t.container} ${t.grid}`}>
   <div className={t.faqHead}><h2 className={`${t.display} ${t.h2}`}>A few things to know.</h2><a className={t.supportLink} href="https://trainpilot.pablogarces.dev/support">Get support <ArrowUpRight size={16} /></a></div>
