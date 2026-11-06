@@ -11,6 +11,7 @@ type Project = {
   href?: string; linkLabel?: string; website?: string;
   video?: string; poster?: string; gif?: string;
   diagram?: "watch" | "brain"; caption: string;
+  hidden?: boolean;
 };
 
 const projects: Project[] = [
@@ -45,7 +46,7 @@ const projects: Project[] = [
     caption: "Recorded terminal demo · Claude, OpenCode, and Codex side by side",
   },
   {
-    id: "hombre-muerto", name: "Hombre Muerto", category: "iOS · Android", status: "Native prototype",
+    id: "hombre-muerto", hidden: true, name: "Hombre Muerto", category: "iOS · Android", status: "Native prototype",
     subtitle: "An offline watch alarm for small boats.",
     description: "A native mobile app with a marine-radar interface: a pre-departure permission checklist, bridge/captain/crew role selection, a bridge countdown and check-in screen, and dedicated receiver screens. Phones communicate over the boat’s local Wi-Fi without an internet connection. Each check-in moves the receivers’ pre-armed alarm deadline forward.",
     detail: "The design makes a missing heartbeat lead to an alarm instead of silence. Built with Swift and Kotlin alarm modules; cross-device failure testing and standalone releases are still in progress.",
@@ -154,7 +155,7 @@ function ProjectMedia({ project }: { project: Project }) {
 }
 
 export default function ProjectsGallery({ kind = "projects" }: { kind?: "projects" | "frontend" }) {
-  const items = kind === "frontend" ? frontendProjects : projects;
+  const items = (kind === "frontend" ? frontendProjects : projects).filter((project) => !project.hidden);
   return <div className="projects-gallery">{items.map((project, index) => <Reveal key={project.id}>
     <article id={`project-${project.id}`} className="project-row grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
       <div className={`order-2 ${index % 2 === 0 ? "lg:order-1" : "lg:order-2"}`}>
