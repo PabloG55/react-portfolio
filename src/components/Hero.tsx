@@ -3,13 +3,15 @@
 import { useRef, type CSSProperties, type MouseEvent } from "react";
 import { ArrowUpRight } from "lucide-react";
 import ParticleNetwork from "./ParticleNetwork";
+import type { Dict } from "@/i18n";
 
-type Props = { onNavigate: (event: MouseEvent<HTMLAnchorElement>) => void };
+type Props = { t: Dict["hero"]; onNavigate: (event: MouseEvent<HTMLAnchorElement>) => void };
 const delay = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 
 // The hero is the thesis: "Building." is made of the particle network, and it
 // assembles on load and rebuilds itself after the cursor knocks it apart.
-export default function Hero({ onNavigate }: Props) {
+// "Always Building." is the brand line: it stays in English on the Spanish page too.
+export default function Hero({ t, onNavigate }: Props) {
   const wordRef = useRef<HTMLSpanElement>(null);
 
   return (
@@ -21,7 +23,7 @@ export default function Hero({ onNavigate }: Props) {
 
       <div className="hero-inner relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="hero-stage">
-          <p className="hero-kicker hero-enter">Pablo Garces, software engineer</p>
+          <p className="hero-kicker hero-enter">{t.kicker}</p>
           <h1 className="hero-display font-display font-medium">
             <span className="block hero-enter">Always</span>
             <span ref={wordRef} className="hero-word block">Building.</span>
@@ -29,17 +31,17 @@ export default function Hero({ onNavigate }: Props) {
         </div>
         <div className="hero-foot">
           <p className="hero-lede hero-enter" style={delay(900)}>
-            Software engineer and M.S. student at UNC Charlotte. I build mobile apps, backend systems, and tools that make day-to-day development easier.
+            {t.lede}
           </p>
           <div className="hero-links-row hero-enter" style={delay(1050)}>
             <a href="#projects" onClick={onNavigate} className="hero-project-link">
-              View projects <ArrowUpRight size={18} aria-hidden="true" />
+              {t.viewProjects} <ArrowUpRight size={18} aria-hidden="true" />
             </a>
             <a href="https://github.com/PabloG55" target="_blank" rel="noopener noreferrer" className="hero-github-link">
               GitHub <ArrowUpRight size={18} aria-hidden="true" />
             </a>
             <a href="#contact" onClick={onNavigate} className="hero-github-link">
-              Contact <ArrowUpRight size={18} aria-hidden="true" />
+              {t.contact} <ArrowUpRight size={18} aria-hidden="true" />
             </a>
           </div>
         </div>

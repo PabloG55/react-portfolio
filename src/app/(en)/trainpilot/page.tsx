@@ -7,8 +7,8 @@ import TrainPilotHero from '@/components/marketing/TrainPilotHero';
 import { ProductHeader, ProductFooter } from '@/components/marketing/MarketingShell';
 import s from '@/components/marketing/marketing.module.css';
 import t from '@/components/marketing/trainpilot.module.css';
-const body = localFont({ src: [{ path: '../../../public/marketing/fonts/HankenGrotesk_400Regular.ttf', weight: '400' }, { path: '../../../public/marketing/fonts/HankenGrotesk_600SemiBold.ttf', weight: '600' }], variable: '--font-body', display: 'swap' });
-const display = localFont({ src: '../../../public/marketing/fonts/SchibstedGrotesk_600SemiBold.ttf', weight: '600', variable: '--font-display', display: 'swap' });
+const body = localFont({ src: [{ path: '../../../../public/marketing/fonts/HankenGrotesk_400Regular.ttf', weight: '400' }, { path: '../../../../public/marketing/fonts/HankenGrotesk_600SemiBold.ttf', weight: '600' }], variable: '--font-body', display: 'swap' });
+const display = localFont({ src: '../../../../public/marketing/fonts/SchibstedGrotesk_600SemiBold.ttf', weight: '600', variable: '--font-display', display: 'swap' });
 const store = 'https://apps.apple.com/us/app/trainpilot/id6788894342';
 export const metadata: Metadata = { metadataBase: new URL('https://trainpilot.pablogarces.dev'), title: 'TrainPilot | Your runs. Your lifts. Your next step.', description: 'Personal running plans, spoken coaching, gym progression, and Apple Watch workouts. TrainPilot brings your training together.', alternates: { canonical: 'https://trainpilot.pablogarces.dev' }, icons: { icon: '/marketing/trainpilot-favicon.png', apple: '/images/trainpilot-icon.webp' }, openGraph: { title: 'TrainPilot — Your runs. Your lifts. Your next step.', description: 'Running and strength training, together.', url: 'https://trainpilot.pablogarces.dev', images: ['/marketing/trainpilot-run-home.webp'] } };
 

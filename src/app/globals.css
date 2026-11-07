@@ -32,6 +32,9 @@
 }
 
 .site-header { isolation: isolate; }
+/* Language switch: hidden for a moment while /es and / put the reader back in place, or while the
+   detector sends a Spanish-first browser on to /es (src/i18n/lang-script.ts). The canvas stays dark. */
+html.restoring main { visibility: hidden; }
 .portfolio-hero { min-height: 100svh; display: flex; flex-direction: column; }
 .hero-inner { flex: 1; display: flex; flex-direction: column; padding-top: calc(var(--header-height) + 48px); padding-bottom: 48px; }
 .hero-stage { flex: 1; display: flex; flex-direction: column; justify-content: center; }

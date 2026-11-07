@@ -4,128 +4,88 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Pause, Play, LockKeyhole } from "lucide-react";
 import Reveal from "./Reveal";
 import SystemPreview from "./SystemPreview";
+import { fill, type Dict } from "@/i18n";
 
+// What a project is (name, links, media, tech) lives here; what it says lives in the
+// dictionary under t.projects[id], so both languages show the same projects in the same order.
+type ProjectId = keyof Dict["projects"];
 type Project = {
-  id: string; name: string; category: string; status: string; subtitle: string;
-  description: string; detail: string; tech: string[];
-  href?: string; linkLabel?: string; website?: string;
+  id: ProjectId; name: string; tech: string[];
+  href?: string; website?: string;
   video?: string; poster?: string; gif?: string;
-  diagram?: "watch" | "brain"; caption: string;
-  hidden?: boolean;
+  diagram?: "watch" | "brain";
+  live?: boolean; locked?: boolean; hidden?: boolean;
 };
 
 const projects: Project[] = [
   {
-    id: "trainpilot", name: "TrainPilot", category: "iOS · Apple Watch", status: "On the App Store",
-    subtitle: "A running coach and gym logbook, in one app.",
-    description: "I wanted one place for my runs and my lifting. TrainPilot builds run plans around a goal race, tracks pace and heart rate, and speaks coaching cues while the phone stays in your pocket. In the gym, it logs sets and suggests what to lift next based on what you actually completed.",
-    detail: "Apple Watch controls, Health import/export, Strava and intervals.icu sync, and training with friends. Built for both English and Spanish.",
+    id: "trainpilot", name: "TrainPilot", live: true,
     tech: ["React Native", "Expo", "Swift", "HealthKit"],
-    href: "https://apps.apple.com/us/app/trainpilot/id6788894342", linkLabel: "Get TrainPilot", website: "https://trainpilot.pablogarces.dev",
+    href: "https://apps.apple.com/us/app/trainpilot/id6788894342", website: "https://trainpilot.pablogarces.dev",
     video: "/projects/trainpilot/demo.mp4", poster: "/projects/trainpilot/poster.webp", gif: "/projects/trainpilot/demo.gif",
-    caption: "Product walkthrough · running, lifting, and Apple Watch",
   },
   {
-    id: "skipper", name: "Skipper", category: "iOS · v2", status: "In development",
-    subtitle: "Watch videos with fewer ads.",
-    description: "Skipper blocks ads and trackers by default and automatically skips supported video ads. The second version adds a native personal library: save a video, queue the next one, and pick up at your last playback position. Browsing and playback run in separate WebViews, so opening another page doesn’t tear down the player.",
-    detail: "Each profile gets its own library and sign-ins. Private mode keeps the queue in memory and saves no history. Saved videos are links and metadata, rather than downloads.",
+    id: "skipper", name: "Skipper",
     tech: ["React Native", "TypeScript", "WKWebView", "Swift"],
-    href: "https://skipper.pablogarces.dev", linkLabel: "About Skipper",
+    href: "https://skipper.pablogarces.dev",
     video: "/projects/skipper/queue-profiles.mp4", poster: "/projects/skipper/queue-profiles.webp", gif: "/projects/skipper/queue-profiles.gif",
-    caption: "Queue and profiles · current iOS UI",
   },
   {
-    id: "ghostfleet", name: "Ghostfleet", category: "Developer tool", status: "Open source",
-    subtitle: "A whole fleet of coding agents. One terminal.",
-    description: "One screen to see what every coding agent is doing. Start a worker in its own Git worktree, jump between sessions, or watch several live terminals side by side. Sessions stay running when you close the window, and the phone client lets you answer a blocked worker from anywhere.",
-    detail: "Works with multiple coding agents. Per-project session isolation, worktree reuse, and a governor for resource and usage limits handle the less glamorous parts of running a fleet.",
+    id: "ghostfleet", name: "Ghostfleet",
     tech: ["Node.js", "tmux", "Git worktrees", "MCP"],
-    href: "https://github.com/PabloG55/ghostfleet", linkLabel: "View source", website: "https://ghostfleet.pablogarces.dev",
+    href: "https://github.com/PabloG55/ghostfleet", website: "https://ghostfleet.pablogarces.dev",
     video: "/projects/ghostfleet/stack-demo.mp4", poster: "/projects/ghostfleet/stack-poster.webp", gif: "/projects/ghostfleet/stack-demo.gif",
-    caption: "Recorded terminal demo · Claude, OpenCode, and Codex side by side",
   },
   {
-    id: "hombre-muerto", hidden: true, name: "Hombre Muerto", category: "iOS · Android", status: "Native prototype",
-    subtitle: "An offline watch alarm for small boats.",
-    description: "A native mobile app with a marine-radar interface: a pre-departure permission checklist, bridge/captain/crew role selection, a bridge countdown and check-in screen, and dedicated receiver screens. Phones communicate over the boat’s local Wi-Fi without an internet connection. Each check-in moves the receivers’ pre-armed alarm deadline forward.",
-    detail: "The design makes a missing heartbeat lead to an alarm instead of silence. Built with Swift and Kotlin alarm modules; cross-device failure testing and standalone releases are still in progress.",
+    id: "hombre-muerto", hidden: true, name: "Hombre Muerto",
     tech: ["React Native", "Expo", "Swift", "Kotlin", "UDP"],
     video: "/projects/hombre-muerto/demo.mp4", poster: "/projects/hombre-muerto/poster.webp", gif: "/projects/hombre-muerto/demo.gif",
-    caption: "Native UI walkthrough · iOS simulator · demo data",
   },
   {
-    id: "immich", name: "Immich Sync Assistant", category: "Desktop utility", status: "Open source",
-    subtitle: "Get the photos off your phone. Keep the originals.",
-    description: "A desktop tool that pulls photos and videos from an Android phone over USB using ADB, then uploads them to a self-hosted Immich server. Pick specific folders, skip files already on the server, and organize uploads into albums.",
-    detail: "Optional local ZIP archives and cleanup after upload keep the workflow under your control. The Tkinter GUI stays responsive while transfers run in background threads.",
+    id: "immich", name: "Immich Sync Assistant",
     tech: ["Python", "Tkinter", "ADB", "Immich API"],
-    href: "https://github.com/PabloG55/immich_sync_assistant", linkLabel: "View source",
+    href: "https://github.com/PabloG55/immich_sync_assistant",
     video: "/projects/immich/demo.mp4", poster: "/projects/immich/poster.webp", gif: "/projects/immich/demo.gif",
-    caption: "UI walkthrough · folder selection, transfer, and verification",
   },
   {
-    id: "markserv-diff", name: "markserv-diff", category: "Developer tool", status: "Open source",
-    subtitle: "Review the document, with the changes in place.",
-    description: "Raw Markdown diffs are hard to read when you’re reviewing a spec. This local document browser renders the Markdown and highlights changes inline: words, whole blocks, and table rows. Compare your working copy with HEAD or the current branch with main.",
-    detail: "A file-tree sidebar, change minimap, and live reload make it practical for everyday docs work. Two runtime dependencies keep the tool small.",
+    id: "markserv-diff", name: "markserv-diff",
     tech: ["Node.js", "Markdown", "markdown-it", "jsdiff"],
-    href: "https://github.com/PabloG55/markserv-diff", linkLabel: "View source",
+    href: "https://github.com/PabloG55/markserv-diff",
     video: "/projects/markserv-diff/demo.mp4", poster: "/projects/markserv-diff/poster.webp", gif: "/projects/markserv-diff/demo.gif",
-    caption: "Real rendered diff · sample documentation",
   },
   {
-    id: "sec-brain", name: "sec-brain", category: "Personal system", status: "Private",
-    subtitle: "Personal agents for creative work, school, and organization.",
-    description: "Built on top of Ghostfleet, sec-brain is a private workspace with specialized agents for graphic design, video editing, schoolwork, and day-to-day organization. I can ask an agent to create a visual, edit a video, organize coursework, or plan a project. The system keeps the relevant notes, tasks, and context together in plain Markdown, so the agents can work from the same information.",
-    detail: "Tasks sync to Apple Reminders through macOS automation and reach the iPhone through iCloud. Git provides a private backup. This overview shows the workflow using an invented example; the vault and its contents stay private.",
+    id: "sec-brain", name: "sec-brain", locked: true,
     tech: ["Ghostfleet", "Agents", "Markdown", "CLI", "macOS automation", "Apple Reminders"], diagram: "brain", gif: "/projects/sec-brain/demo.gif",
-    caption: "Interactive workflow · synthetic example · no personal vault data",
   },
   {
-    id: "galapass", name: "Galapass", category: "Web platform", status: "Web app",
-    subtitle: "A tour marketplace built for the Galápagos.",
-    description: "One platform for travelers, tour operators, and guides. Travelers discover and book island experiences; operators manage tours, availability, and bookings; guides see their schedules and passenger manifests.",
-    detail: "A React frontend and Spring Boot backend support the three roles, with Docker packaging the API and PostgreSQL storing the bookings.",
-    tech: ["React", "Spring Boot", "Docker"], href: "https://www.galapass.net/", linkLabel: "Visit Galapass",
-    video: "/projects/galapass/demo.mp4", poster: "/projects/galapass/poster.webp", gif: "/projects/galapass/demo.gif", caption: "UI walkthrough · Galapagos tour marketplace",
+    id: "galapass", name: "Galapass",
+    tech: ["React", "Spring Boot", "Docker"], href: "https://www.galapass.net/",
+    video: "/projects/galapass/demo.mp4", poster: "/projects/galapass/poster.webp", gif: "/projects/galapass/demo.gif",
   },
 ];
 
 const frontendProjects: Project[] = [
   {
-    id: "paula-garces", name: "Dra. Paula Garcés", category: "Frontend · Clinic website", status: "Live website",
-    subtitle: "A bilingual clinic website, with the controls behind it.",
-    description: "A Spanish and English website for an aesthetic medicine practice in Galápagos. Animated silk backgrounds, a filterable treatment catalog, individual treatment pages, and WhatsApp links help visitors explore the practice and ask about a consultation.",
-    detail: "Its own password-protected, phone-friendly admin portal manages treatments, categories, photos, translations, page content, contact details, and SEO. It also includes publishing controls, drag-and-drop ordering, revision history with restore, visit and campaign analytics, WhatsApp conversion tracking, and consent-gated Google Analytics, Google Ads, and Meta Pixel integrations.",
+    id: "paula-garces", name: "Dra. Paula Garcés",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "GSAP", "WebGL", "Vercel Blob", "Upstash Redis"],
-    href: "https://drapaulagarces.vercel.app/", linkLabel: "Visit website",
+    href: "https://drapaulagarces.vercel.app/",
     video: "/projects/paula-garces/demo.mp4", poster: "/projects/paula-garces/poster.webp", gif: "/projects/paula-garces/demo.gif",
-    caption: "Live website · scrolling landing-page walkthrough",
   },
   {
-    id: "isa-cruz-art", name: "Isa Cruz Art", category: "Frontend · Artist portfolio", status: "Live website",
-    subtitle: "Isabelly Cruz’s work, across four creative disciplines.",
-    description: "An editorial portfolio for Isabelly Cruz, spanning traditional media, graphic design and animation, 3D, and photography. The landing page leads into discipline collections, individual project galleries, videos, an About page, and a working contact form.",
-    detail: "Its own password-protected admin portal manages projects, images and cropping, gallery order, featured work, publishing, videos, and the About page. Site settings control the palette, fonts, hero copy, animation, and contact links; a messages inbox keeps contact submissions together. Postgres stores the content and Vercel Blob handles uploaded images.",
+    id: "isa-cruz-art", name: "Isa Cruz Art",
     tech: ["Next.js", "React", "TypeScript", "Prisma", "PostgreSQL", "Auth.js", "Vercel Blob"],
-    href: "https://isacruzart.com/", linkLabel: "Visit website",
+    href: "https://isacruzart.com/",
     video: "/projects/isa-cruz-art/demo.mp4", poster: "/projects/isa-cruz-art/poster.webp", gif: "/projects/isa-cruz-art/demo.gif",
-    caption: "Live website · scrolling landing-page walkthrough",
   },
   {
-    id: "sos-galapagos", name: "SOS Galápagos", category: "Frontend · Relief directory", status: "Live website",
-    subtitle: "Where to donate after the floods in Santa Cruz, Galápagos.",
-    description: "A Spanish-first, phone-first directory of where to give after the 30–31 October 2026 floods in Santa Cruz, with an English version at /en/. Full-bleed black-and-white photos, each credited to its photographer, reveal as you scroll, then tabs sort the directory by how you give.",
-    detail: "Bank transfers are grouped by cause, giving from abroad covers card, PayPal, and SWIFT, and supply drop-off points are listed by city with Google Maps buttons. It lists organizations only, never personal accounts. Every entry carries its source and date, with numbers transcribed from a local news reel and never guessed. The language switch keeps your place on the page, and photos are served as AVIF, WebP, or JPEG.",
+    id: "sos-galapagos", name: "SOS Galápagos",
     tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui", "Vercel"],
-    href: "https://sosgalapagos.pablogarces.dev/", linkLabel: "Visit website",
+    href: "https://sosgalapagos.pablogarces.dev/",
     video: "/projects/sos-galapagos/demo.mp4", poster: "/projects/sos-galapagos/poster.webp", gif: "/projects/sos-galapagos/demo.gif",
-    caption: "Live website · scrolling landing-page walkthrough",
   },
 ];
 
-function ProjectMedia({ project }: { project: Project }) {
+function ProjectMedia({ project, t }: { project: Project; t: Dict }) {
   const video = useRef<HTMLVideoElement>(null);
   const userPaused = useRef(false);
   const [playing, setPlaying] = useState(false);
@@ -154,30 +114,30 @@ function ProjectMedia({ project }: { project: Project }) {
   return (
     <figure className="project-figure">
       <div className={`project-media ${(project.id === "skipper" || project.id === "hombre-muerto") ? "project-media-phone" : ""}`}>
-        {project.diagram ? <SystemPreview kind={project.diagram} /> : project.video ? <>
-          <video ref={video} muted loop playsInline preload="none" poster={project.poster} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} aria-label={`${project.name} walkthrough`}><source src={project.video} type="video/mp4" /></video>
-          <button onClick={toggleVideo} className="media-play-button" aria-label={`${playing ? "Pause" : "Play"} ${project.name} walkthrough`}>{playing ? <Pause size={14} /> : <Play size={14} />} {playing ? "Pause" : "Play"}</button>
+        {project.diagram ? <SystemPreview kind={project.diagram} t={t.preview} /> : project.video ? <>
+          <video ref={video} muted loop playsInline preload="none" poster={project.poster} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} aria-label={fill(t.gallery.videoLabel, { name: project.name })}><source src={project.video} type="video/mp4" /></video>
+          <button onClick={toggleVideo} className="media-play-button" aria-label={fill(playing ? t.gallery.pauseLabel : t.gallery.playLabel, { name: project.name })}>{playing ? <Pause size={14} /> : <Play size={14} />} {playing ? t.gallery.pause : t.gallery.play}</button>
         </> : null}
       </div>
-      <figcaption><span>{project.caption}</span>{project.gif && <a href={project.gif} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.name} GIF`}>GIF <ArrowUpRight size={11} /></a>}</figcaption>
+      <figcaption><span>{t.projects[project.id].caption}</span>{project.gif && <a href={project.gif} target="_blank" rel="noopener noreferrer" aria-label={fill(t.gallery.gifLabel, { name: project.name })}>GIF <ArrowUpRight size={11} /></a>}</figcaption>
     </figure>
   );
 }
 
-export default function ProjectsGallery({ kind = "projects" }: { kind?: "projects" | "frontend" }) {
+export default function ProjectsGallery({ t, kind = "projects" }: { t: Dict; kind?: "projects" | "frontend" }) {
   const items = (kind === "frontend" ? frontendProjects : projects).filter((project) => !project.hidden);
-  return <div className="projects-gallery">{items.map((project, index) => <Reveal key={project.id}>
+  return <div className="projects-gallery">{items.map((project, index) => { const copy = t.projects[project.id]; return <Reveal key={project.id}>
     <article id={`project-${project.id}`} className="project-row grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
       <div className={`order-2 ${index % 2 === 0 ? "lg:order-1" : "lg:order-2"}`}>
-        <div className="project-meta"><span>{project.category}</span><span className={`project-status ${project.status === "On the App Store" ? "status-live" : ""}`}>{project.status === "Private" && <LockKeyhole size={11} />}{project.status}</span></div>
+        <div className="project-meta"><span>{copy.category}</span><span className={`project-status ${project.live ? "status-live" : ""}`}>{project.locked && <LockKeyhole size={11} />}{copy.status}</span></div>
         <h3 className="text-4xl md:text-5xl font-display font-medium tracking-tight text-gray-900 dark:text-white mb-4">{project.name}</h3>
-        <p className="text-xl text-gray-700 dark:text-gray-300 mb-5 leading-snug">{project.subtitle}</p>
-        <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-4">{project.description}</p>
-        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-6">{project.detail}</p>
-        <ul className="project-tech" aria-label={`${project.name} technologies`}>{project.tech.map(tech => <li key={tech}>{tech}</li>)}</ul>
-        <div className="flex flex-wrap gap-6">{project.href && <a target={project.href.startsWith("http") ? "_blank" : undefined} rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined} href={project.href} className="project-link">{project.linkLabel}<ArrowUpRight size={17} /></a>}{project.website && <a href={project.website} className="project-link">Explore the app<ArrowUpRight size={17} /></a>}</div>
+        <p className="text-xl text-gray-700 dark:text-gray-300 mb-5 leading-snug">{copy.subtitle}</p>
+        <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-4">{copy.description}</p>
+        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-6">{copy.detail}</p>
+        <ul className="project-tech" aria-label={fill(t.gallery.techLabel, { name: project.name })}>{project.tech.map(tech => <li key={tech}>{tech}</li>)}</ul>
+        <div className="flex flex-wrap gap-6">{project.href && <a target={project.href.startsWith("http") ? "_blank" : undefined} rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined} href={project.href} className="project-link">{copy.linkLabel}<ArrowUpRight size={17} /></a>}{project.website && <a href={project.website} className="project-link">{t.gallery.exploreApp}<ArrowUpRight size={17} /></a>}</div>
       </div>
-      <div className={`order-1 min-w-0 ${index % 2 === 0 ? "lg:order-2" : "lg:order-1"}`}><ProjectMedia project={project} /></div>
+      <div className={`order-1 min-w-0 ${index % 2 === 0 ? "lg:order-2" : "lg:order-1"}`}><ProjectMedia project={project} t={t} /></div>
     </article>
-  </Reveal>)}</div>;
+  </Reveal>; })}</div>;
 }
