@@ -7,6 +7,7 @@ import ProjectsGallery from "@/components/ProjectsGallery";
 import Hero from "@/components/Hero";
 import SkillsTerminal from "@/components/SkillsTerminal";
 import Reveal from "@/components/Reveal";
+import BrandMark from "@/components/BrandMark";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -67,17 +68,13 @@ export default function Home() {
   };
 
   return (
-    <main>
+    <main className="home-type">
       <nav className="site-header fixed w-full z-50 top-0 bg-background-light dark:bg-background-dark border-b border-gray-100 dark:border-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-[72px]">
             <div className="flex-shrink-0">
-              <a
-                className="font-display font-bold text-xl tracking-tight hover:text-primary transition-colors flex items-center gap-2"
-                href="#"
-              >
-                <span className="w-2 h-2 rounded-full bg-primary"></span>
-                GARCES.DEV
+              <a className="brand-link" href="#" aria-label="Pablo Garces, home">
+                <BrandMark className="brand-mark" />
               </a>
             </div>
             <div className="hidden md:block">
