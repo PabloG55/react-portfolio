@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Mail, Menu, Phone, Send, X } from "lucide-react";
 import ProjectsGallery from "@/components/ProjectsGallery";
@@ -8,12 +8,26 @@ import Hero from "@/components/Hero";
 import SkillsTerminal from "@/components/SkillsTerminal";
 import Reveal from "@/components/Reveal";
 import BrandMark from "@/components/BrandMark";
+import LangSwitch from "@/components/LangSwitch";
+import type { Dict, Lang } from "@/i18n";
+import { restorePlace } from "@/i18n/keep-place";
 
-export default function Home() {
+// The home page, in either language. The markup is shared, so /es and / always have the same
+// element structure (the language switch relies on that to keep your place).
+export default function Home({ lang, t }: { lang: Lang; t: Dict }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [formStatus, setFormStatus] = useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
+
+  // The Spanish nav labels are longer: at 768–1023 px the desktop row doesn't fit, so Spanish
+  // keeps the menu button up to lg. English keeps its original md breakpoint.
+  const bp = lang === "es"
+    ? { desktop: "hidden lg:block", mobile: "lg:hidden" }
+    : { desktop: "hidden md:block", mobile: "md:hidden" };
+
+  // Coming from the other language: put the reader back where they were reading.
+  useEffect(restorePlace, []);
 
   const handleSectionNavigation = (event: React.MouseEvent<HTMLAnchorElement>) => {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -73,56 +87,57 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-[72px]">
             <div className="flex-shrink-0">
-              <a className="brand-link" href="#" aria-label="Pablo Garces, home">
+              <a className="brand-link" href="#" aria-label={t.nav.home}>
                 <BrandMark className="brand-mark" />
               </a>
             </div>
-            <div className="hidden md:block">
-              <div className="ml-6 flex items-baseline space-x-6 lg:space-x-10">
+            <div className={bp.desktop}>
+              <div className="ml-6 flex items-baseline space-x-6 lg:space-x-10 whitespace-nowrap">
                 <a
                   className="hover:text-primary text-sm font-medium transition-colors"
                   href="#projects" onClick={handleSectionNavigation}
                 >
-                  Projects
+                  {t.nav.projects}
                 </a>
                 <a
                   className="hover:text-primary text-sm font-medium transition-colors"
                   href="#frontend" onClick={handleSectionNavigation}
                 >
-                  Frontend
+                  {t.nav.frontend}
                 </a>
                 <a
                   className="hover:text-primary text-sm font-medium transition-colors"
                   href="#about" onClick={handleSectionNavigation}
                 >
-                  About
+                  {t.nav.about}
                 </a>
                 <a
                   className="hover:text-primary text-sm font-medium transition-colors"
                   href="#skills" onClick={handleSectionNavigation}
                 >
-                  Skills
+                  {t.nav.skills}
                 </a>
                 <a
                   className="hover:text-primary text-sm font-medium transition-colors"
                   href="#experience" onClick={handleSectionNavigation}
                 >
-                  Experience
+                  {t.nav.experience}
                 </a>
                 <a
                   className="border border-gray-200 dark:border-gray-800 hover:border-primary hover:text-primary px-5 py-2 rounded-full text-sm font-medium transition-colors"
                   href="#contact" onClick={handleSectionNavigation}
                 >
-                  Contact
+                  {t.nav.contact}
                 </a>
+                <LangSwitch lang={lang} label={t.nav.language} />
               </div>
             </div>
-            <div className="-mr-2 flex md:hidden">
+            <div className={`-mr-2 flex ${bp.mobile}`}>
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
                 type="button"
-                aria-label="Open navigation"
+                aria-label={t.nav.openMenu}
                 aria-expanded={isMenuOpen}
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -134,7 +149,7 @@ export default function Home() {
 
       {/* Mobile menu drawer overlay */}
       <div
-        className={`fixed inset-0 bg-black/20 dark:bg-black/50 backdrop-blur-sm z-[90] transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 bg-black/20 dark:bg-black/50 backdrop-blur-sm z-[90] transition-opacity duration-300 ${bp.mobile} ${
           isMenuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
@@ -146,16 +161,16 @@ export default function Home() {
       <div
         inert={!isMenuOpen}
         aria-hidden={!isMenuOpen}
-        className={`fixed top-0 right-0 h-full w-[250px] bg-zinc-950 text-white border-l border-zinc-900 z-[100] transform transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] md:hidden flex flex-col ${
+        className={`fixed top-0 right-0 h-full w-[250px] bg-zinc-950 text-white border-l border-zinc-900 z-[100] transform transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${bp.mobile} flex flex-col ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-900">
           <span className="font-display font-medium text-sm">
-            Menu
+            {t.nav.menu}
           </span>
           <button
-            aria-label="Close navigation"
+            aria-label={t.nav.closeMenu}
             onClick={() => setIsMenuOpen(false)}
             className="text-gray-400 hover:text-white transition-colors"
           >
@@ -167,53 +182,56 @@ export default function Home() {
             className="hover:text-primary text-lg font-medium transition-colors"
             href="#projects" onClick={handleSectionNavigation}
           >
-            Projects
+            {t.nav.projects}
           </a>
           <a
             className="hover:text-primary text-lg font-medium transition-colors"
             href="#frontend" onClick={handleSectionNavigation}
           >
-            Frontend
+            {t.nav.frontend}
           </a>
           <a
             className="hover:text-primary text-lg font-medium transition-colors"
             href="#about" onClick={handleSectionNavigation}
           >
-            About
+            {t.nav.about}
           </a>
           <a
             className="hover:text-primary text-lg font-medium transition-colors"
             href="#skills" onClick={handleSectionNavigation}
           >
-            Skills
+            {t.nav.skills}
           </a>
           <a
             className="hover:text-primary text-lg font-medium transition-colors"
             href="#experience" onClick={handleSectionNavigation}
           >
-            Experience
+            {t.nav.experience}
           </a>
           <a
             className="hover:text-primary text-lg font-medium transition-colors"
             href="#contact" onClick={handleSectionNavigation}
           >
-            Contact
+            {t.nav.contact}
           </a>
+        </div>
+        <div className="mx-6 mt-4 pt-6 border-t border-gray-100 dark:border-gray-900">
+          <LangSwitch lang={lang} label={t.nav.language} size="lg" />
         </div>
       </div>
 
-      <Hero onNavigate={handleSectionNavigation} />
+      <Hero t={t.hero} onNavigate={handleSectionNavigation} />
 
       {/* Projects Section */}
       <section className="py-24 md:py-32 bg-gray-50 dark:bg-black/40" id="projects">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div><p className="font-mono text-sm text-primary mb-4">Apps / developer tools / personal systems</p>
-            <h2 className="text-3xl md:text-5xl font-display font-medium text-gray-900 dark:text-white">Things I’ve built.</h2></div>
-            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs leading-relaxed">Shipped apps, open-source tools, and a few projects still on the workbench.</p>
+            <div><p className="font-mono text-sm text-primary mb-4">{t.projectsSection.kicker}</p>
+            <h2 className="text-3xl md:text-5xl font-display font-medium text-gray-900 dark:text-white">{t.projectsSection.heading}</h2></div>
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs leading-relaxed">{t.projectsSection.side}</p>
           </Reveal>
           <div className="space-y-24">
-            <ProjectsGallery />
+            <ProjectsGallery t={t} />
           </div>
         </div>
       </section>
@@ -223,12 +241,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <p className="font-mono text-sm text-primary mb-4">Frontend / client websites</p>
-              <h2 className="text-3xl md:text-5xl font-display font-medium text-gray-900 dark:text-white">Websites people can run.</h2>
+              <p className="font-mono text-sm text-primary mb-4">{t.frontendSection.kicker}</p>
+              <h2 className="text-3xl md:text-5xl font-display font-medium text-gray-900 dark:text-white">{t.frontendSection.heading}</h2>
             </div>
-            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs leading-relaxed">Custom websites, each with its own admin portal for managing content.</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs leading-relaxed">{t.frontendSection.side}</p>
           </Reveal>
-          <ProjectsGallery kind="frontend" />
+          <ProjectsGallery t={t} kind="frontend" />
         </div>
       </section>
 
@@ -244,14 +262,14 @@ export default function Home() {
                 <Image
                   fill
                   sizes="(max-width: 1023px) 100vw, 42vw"
-                  alt="Pablo Garces Portrait"
+                  alt={t.about.photoAlt}
                   className="object-cover object-top w-full h-full opacity-90 transition-[filter] duration-700 grayscale hover:grayscale-0"
                   src="/images/graduation.jpg"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                   <p className="font-mono text-sm font-medium">
-                    Software Engineer UNCC &apos;25
+                    {t.about.photoCaption}
                   </p>
                 </div>
               </div>
@@ -259,58 +277,48 @@ export default function Home() {
             </div>
             <div className="lg:col-span-7 flex flex-col justify-center h-full">
               <h2 className="text-sm font-mono text-primary mb-4">
-                About me
+                {t.about.label}
               </h2>
               <h3 className="text-3xl md:text-5xl font-display font-medium mb-8 text-gray-900 dark:text-white leading-tight">
-                From a real problem
+                {t.about.headingTop}
                 <br />{" "}
                 <span className="text-heading-muted-light dark:text-heading-muted-dark">
-                  to working software.
+                  {t.about.headingBottom}
                 </span>
               </h3>
               <div className="max-w-[65ch] text-base md:text-lg leading-relaxed text-gray-600 dark:text-gray-400 mb-12">
                 <p className="mb-4">
-                  I hold a <strong className="font-medium text-gray-900 dark:text-gray-200">B.Sc. in Computer Science</strong> and am
-                  currently pursuing my M.S. at the University of North Carolina
-                  at Charlotte. I worked as a software engineering intern at
-                  Superkey through September 2026. I spend most of my
-                  time building mobile apps, backend systems, and tools that
-                  make day-to-day development easier.
+                  {t.about.p1Before}<strong className="font-medium text-gray-900 dark:text-gray-200">{t.about.p1Strong}</strong>{t.about.p1After}
                 </p>
-                <p>
-                  My personal projects usually start with something I want
-                  to use: better training, a video player that remembers my
-                  place, or a way to keep track of several coding agents.
-                  I care about the details that make those tools reliable.
-                </p>
+                <p>{t.about.p2}</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-200 dark:border-gray-800 pt-10">
                 <div>
                   <div className="text-xs font-mono text-gray-500 dark:text-gray-400 mb-2">
-                    Master of Science
+                    {t.about.masters}
                   </div>
                   <div className="font-display text-xl text-gray-900 dark:text-white font-medium">
-                    Computer Science
+                    {t.about.mastersField}
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                    UNC Charlotte
+                    {t.about.mastersSchool}
                   </div>
                   <div className="text-sm text-primary mt-2">
-                    Expected Dec 2026
+                    {t.about.mastersDate}
                   </div>
                 </div>
                 <div>
                   <div className="text-xs font-mono text-gray-500 dark:text-gray-400 mb-2">
-                    Bachelor of Science
+                    {t.about.bachelors}
                   </div>
                   <div className="font-display text-xl text-gray-900 dark:text-white font-medium">
-                    Computer Science
+                    {t.about.bachelorsField}
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                    UNC Charlotte • Summa Cum Laude
+                    {t.about.bachelorsSchool}
                   </div>
                   <div className="text-sm text-primary mt-2">
-                    Graduated Dec 2025
+                    {t.about.bachelorsDate}
                   </div>
                 </div>
               </div>
@@ -327,13 +335,13 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <h2 className="text-3xl md:text-5xl font-display font-medium text-gray-900 dark:text-white">
-              Tools I work with
+              {t.skills.heading}
             </h2>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs leading-relaxed">
-              The stack behind the apps, tools, and experiments below.
+              {t.skills.side}
             </p>
           </div>
-          <Reveal><SkillsTerminal /></Reveal>
+          <Reveal><SkillsTerminal t={t.skills} /></Reveal>
         </div>
       </section>
 
@@ -345,85 +353,38 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-4">
             <h2 className="text-3xl md:text-5xl font-display font-medium text-gray-900 dark:text-white">
-              Experience
+              {t.experience.heading}
             </h2>
             <p className="text-gray-600 dark:text-gray-400 font-mono text-sm">
-              /timeline
+              {t.experience.path}
             </p>
           </div>
           <div className="relative space-y-16">
             <div className="absolute left-[19px] top-2 bottom-2 w-px bg-gray-200 dark:bg-gray-800"></div>
 
-            <Reveal className="relative pl-14 group">
+            {t.experience.jobs.map((job, index) => (
+            <Reveal key={job.title} className="relative pl-14 group">
               <div className="absolute left-0 top-0 w-[39px] h-[39px] flex items-center justify-center bg-white dark:bg-background-dark z-10 border border-gray-200 dark:border-gray-800 rounded-full group-hover:border-primary transition-colors">
-                <div className="w-2 h-2 rounded-full bg-primary"></div>
+                <div className={`w-2 h-2 rounded-full ${index === 0 ? "bg-primary" : "bg-gray-300 dark:bg-gray-700"}`}></div>
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-16">
                 <div className="lg:col-span-4">
                   <h3 className="text-xl md:text-2xl font-display font-medium text-gray-900 dark:text-white group-hover:text-primary transition-colors">
-                    Software Engineering Intern
+                    {job.title}
                   </h3>
                   <div className="mt-2 text-base text-gray-700 dark:text-gray-300">
-                    Superkey Insurance
+                    {job.org}
                   </div>
                   <span className="inline-block mt-3 font-mono text-xs text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded tabular-nums">
-                    Nov 2025 – Sep 2026
+                    {job.dates}
                   </span>
                 </div>
                 <ul className="lg:col-span-8 max-w-[72ch] list-disc pl-5 marker:text-gray-400 dark:marker:text-gray-600 space-y-3 text-gray-600 dark:text-gray-400 leading-relaxed">
-                  <li>
-                    Spearheaded the end-to-end development of a new product vertical
-                    from 0 to 1, architecting a scalable full-stack solution that
-                    supports complex multi-user workflows, automated payments, and
-                    secure document management.
-                  </li>
-                  <li>
-                    Engineered critical backend infrastructure and security
-                    protocols, optimizing system reliability and session management
-                    to support rapid release cycles and ensure high availability.
-                  </li>
-                  <li>
-                    Enhanced the flagship SaaS platform by modernizing core
-                    features, including the implementation of intelligent data
-                    matching algorithms and streamlined document ingestion workflows
-                    to improve user onboarding.
-                  </li>
+                  {job.points.map((point) => <li key={point}>{point}</li>)}
                 </ul>
               </div>
             </Reveal>
-
-            <Reveal className="relative pl-14 group">
-              <div className="absolute left-0 top-0 w-[39px] h-[39px] flex items-center justify-center bg-white dark:bg-background-dark z-10 border border-gray-200 dark:border-gray-800 rounded-full group-hover:border-primary transition-colors">
-                <div className="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700"></div>
-              </div>
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-16">
-                <div className="lg:col-span-4">
-                  <h3 className="text-xl md:text-2xl font-display font-medium text-gray-900 dark:text-white group-hover:text-primary transition-colors">
-                    Instructional Assistant
-                  </h3>
-                  <div className="mt-2 text-base text-gray-700 dark:text-gray-300">
-                    UNC Charlotte • College of Computing
-                  </div>
-                  <span className="inline-block mt-3 font-mono text-xs text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded tabular-nums">
-                    Aug 2024 – Dec 2025
-                  </span>
-                </div>
-                <ul className="lg:col-span-8 max-w-[72ch] list-disc pl-5 marker:text-gray-400 dark:marker:text-gray-600 space-y-3 text-gray-600 dark:text-gray-400 leading-relaxed">
-                  <li>
-                    Supported a class of 90 students in mastering C programming and
-                    Assembly language concepts.
-                  </li>
-                  <li>
-                    Led lab sessions independently, offering hands-on guidance with
-                    coding exercises and system architecture.
-                  </li>
-                  <li>
-                    Provided targeted assignment feedback and held office hours to
-                    resolve course-related inquiries.
-                  </li>
-                </ul>
-              </div>
-            </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -437,11 +398,10 @@ export default function Home() {
           <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
               <h2 className="text-3xl md:text-5xl font-display font-medium mb-6 text-gray-900 dark:text-white">
-                Let&apos;s connect
+                {t.contact.heading}
               </h2>
               <p className="text-base md:text-lg leading-relaxed text-gray-600 dark:text-gray-400 mb-10 max-w-[45ch]">
-                I&apos;m currently open to internship and full-time opportunities in
-                software engineering.
+                {t.contact.lede}
               </p>
               <div className="space-y-6 mb-12">
                 <a
@@ -494,14 +454,14 @@ export default function Home() {
                       className="text-sm font-medium text-gray-900 dark:text-gray-300"
                       htmlFor="name"
                     >
-                      Name
+                      {t.contact.name}
                     </label>
                     <input
                       required
                       className="w-full bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg px-4 py-3 text-gray-900 dark:text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
                       id="name"
                       name="name"
-                      placeholder="John Doe"
+                      placeholder={t.contact.namePlaceholder}
                       type="text"
                     />
                   </div>
@@ -510,14 +470,14 @@ export default function Home() {
                       className="text-sm font-medium text-gray-900 dark:text-gray-300"
                       htmlFor="email"
                     >
-                      Email
+                      {t.contact.email}
                     </label>
                     <input
                       required
                       className="w-full bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg px-4 py-3 text-gray-900 dark:text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
                       id="email"
                       name="email"
-                      placeholder="john@example.com"
+                      placeholder={t.contact.emailPlaceholder}
                       type="email"
                     />
                   </div>
@@ -527,26 +487,26 @@ export default function Home() {
                     className="text-sm font-medium text-gray-900 dark:text-gray-300"
                     htmlFor="message"
                   >
-                    Message
+                    {t.contact.message}
                   </label>
                   <textarea
                     required
                     className="w-full bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg px-4 py-3 text-gray-900 dark:text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors min-h-[150px]"
                     id="message"
                     name="message"
-                    placeholder="Tell me about your project..."
+                    placeholder={t.contact.messagePlaceholder}
                   ></textarea>
                 </div>
 
                 <div role="status" aria-live="polite">
                   {formStatus === "success" && (
                     <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-lg text-green-700 dark:text-green-400 text-sm">
-                      Message sent. I&apos;ll get back to you soon.
+                      {t.contact.success}
                     </div>
                   )}
                   {formStatus === "error" && (
                     <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-700 dark:text-red-400 text-sm">
-                      Couldn&apos;t send your message. Try again, or email me at pgarcesb1@gmail.com.
+                      {t.contact.error}
                     </div>
                   )}
                 </div>
@@ -556,7 +516,7 @@ export default function Home() {
                   className="w-full bg-gray-900 dark:bg-white text-white dark:text-black font-medium py-4 px-6 rounded-lg hover:opacity-90 disabled:opacity-60 disabled:cursor-wait transition-opacity flex items-center justify-center gap-2"
                   type="submit"
                 >
-                  {formStatus === "submitting" ? "Sending…" : "Send message"}
+                  {formStatus === "submitting" ? t.contact.sending : t.contact.send}
                   {formStatus !== "submitting" && (
                     <Send size={14} aria-hidden="true" className="" />
                   )}
@@ -565,9 +525,9 @@ export default function Home() {
             </div>
           </Reveal>
           <div className="mt-24 pt-8 border-t border-gray-200 dark:border-gray-900 flex flex-col md:flex-row justify-between items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-            <p>© 2026 Pablo Garces. All rights reserved.</p>
+            <p>{t.contact.rights}</p>
             <p className="font-mono">
-              Designed &amp; Built by Pablo.
+              {t.contact.credit}
             </p>
           </div>
         </div>

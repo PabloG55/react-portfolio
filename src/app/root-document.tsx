@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono, Barlow } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import "./globals.css";
+
+// What the two root layouts share: (en) for / and every app page, (es) for /es.
+// Two root layouts are what let /es serve lang="es" in its HTML while every page stays static.
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -20,30 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
 });
 
-export const metadata: Metadata = {
-  title: "Pablo Garces | Software Engineer",
-  description:
-    "Software engineer and M.S. student at UNC Charlotte. Building TrainPilot, Skipper, Ghostfleet, and tools I use every day.",
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "16x16 32x32 48x48" },
-      { url: "/icon.svg", type: "image/svg+xml" },
-    ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180" }],
-  },
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+const THEME_SCRIPT = `
             document.documentElement.classList.add('js');
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
               document.documentElement.classList.add('dark');
@@ -55,16 +33,9 @@ export default function RootLayout({
                 document.documentElement.classList.remove('dark');
               }
             });
-          `,
-          }}
-        />
-      </head>
-      <body
-        className={`${spaceGrotesk.variable} ${barlow.variable} ${inter.variable} ${jetbrainsMono.variable} bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-body transition-colors duration-300 antialiased overflow-x-hidden w-full`}
-      >
-        {children}
-        <Analytics />
-      </body>
-    </html>
-  );
-}
+          `;
+
+/** The fonts' CSS variables and the page colours, set on <body> by both root layouts. */
+export const BODY_CLASS = `${spaceGrotesk.variable} ${barlow.variable} ${inter.variable} ${jetbrainsMono.variable} bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-body transition-colors duration-300 antialiased overflow-x-hidden w-full`;
+
+export { THEME_SCRIPT, Analytics };
