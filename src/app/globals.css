@@ -38,11 +38,18 @@
 .hero-kicker { font-family: var(--font-mono); font-size: 14px; color: var(--color-heading-muted-light); margin-bottom: 20px; }
 .dark .hero-kicker { color: var(--color-heading-muted-dark); }
 .hero-display { font-size: clamp(3.5rem, 17vw, 20.5rem); line-height: .9; letter-spacing: -.055em; color: #0b0d10; margin-left: -.04em; }
+/* Home page: display type in the logo's face. The hero is set as heavy as the "PG". */
+.home-type { --font-display: var(--font-brand), "Barlow", sans-serif; }
+.home-type .hero-display { font-weight: 800; letter-spacing: -.025em; line-height: .96; margin-left: -.03em; }
 .dark .hero-display { color: #fff; }
 .hero-word { color: var(--color-heading-muted-light); }
 .dark .hero-word { color: var(--color-heading-muted-dark); }
 /* Once the canvas has drawn the word, it paints the glyphs; the text stays for screen readers and as the fallback. */
 .hero-word[data-built] { opacity: 0; }
+/* With JS, keep the fallback text hidden from first paint so it never shows and then vanishes while the particles assemble.
+   Failsafe: if the canvas has not built the word after 2.5s, the text fades in. Without JS the text shows as normal. */
+.js .hero-word:not([data-built]) { opacity: 0; animation: hero-word-failsafe .3s ease 2.5s forwards; }
+@keyframes hero-word-failsafe { to { opacity: 1; } }
 .hero-foot { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 32px; row-gap: 24px; align-items: end; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--color-border-light); }
 .dark .hero-foot { border-color: #1c1f24; }
 .hero-foot .hero-lede { grid-column: 1 / span 12; margin: 0; }
@@ -229,3 +236,11 @@
 @media (max-width: 640px) {
   .project-media:has(.system-preview) { height: 420px; }
 }
+
+/* PG.DEV logo (header). "PG" follows the text colour; ".DEV" is the accent. */
+.brand-link { display: inline-flex; align-items: center; color: #0b0d10; border-radius: 4px; transition: opacity .2s ease; }
+.dark .brand-link { color: #f3f4f6; }
+.brand-link:hover { opacity: .72; }
+.brand-mark { display: block; height: 46px; width: auto; }
+.brand-mark-dev { fill: var(--color-primary); }
+@media (min-width: 768px) { .brand-mark { height: 54px; } }

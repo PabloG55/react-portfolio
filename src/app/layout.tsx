@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, Inter, JetBrains_Mono, Barlow } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-display",
+});
+// Barlow is the closest match to the PG.DEV logo's heavy, rounded-rectangle
+// letters; the home page uses it for its display type.
+const barlow = Barlow({
+  subsets: ["latin"],
+  weight: ["500", "600", "800"],
+  variable: "--font-brand",
 });
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const jetbrainsMono = JetBrains_Mono({
@@ -37,6 +44,7 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
+            document.documentElement.classList.add('js');
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
               document.documentElement.classList.add('dark');
             }
@@ -52,7 +60,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-body transition-colors duration-300 antialiased overflow-x-hidden w-full`}
+        className={`${spaceGrotesk.variable} ${barlow.variable} ${inter.variable} ${jetbrainsMono.variable} bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-body transition-colors duration-300 antialiased overflow-x-hidden w-full`}
       >
         {children}
         <Analytics />
