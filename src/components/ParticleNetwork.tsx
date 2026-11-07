@@ -56,7 +56,7 @@ export default function ParticleNetwork({ wordRef }: { wordRef?: RefObject<HTMLE
     let wobble = 0.6;
 
     // Fin: a dorsal fin that cruises a waterline under the word.
-    const fin = { on: false, wl: 0, left: 0, right: 0, fh: 0, fw: 0, x: 0, dir: 1, sink: 1, spacing: 3 };
+    const fin = { on: false, wl: 0, left: 0, right: 0, fh: 0, fw: 0, x: 0, dir: 1, sink: 1, spacing: 3, fresh: false };
     let water: { bx: number; x: number; y: number }[] = [];
 
     const makeDot = (hx: number, hy: number, kind: Dot["kind"], progress: number, assemble: boolean, accent: boolean, lx = 0, ly = 0): Dot => ({
@@ -233,7 +233,7 @@ export default function ParticleNetwork({ wordRef }: { wordRef?: RefObject<HTMLE
       const fw = fh * 1.3;
       const wl = originY + baseline + Math.max(gm.actualBoundingBoxDescent, fontSize * 0.18) + fontSize * 0.07;
       Object.assign(fin, {
-        on: true, wl, fh, fw, sink: 1,
+        on: true, wl, fh, fw, sink: 1, fresh: true,
         left: originX + pad, right: originX + pad + metrics.width,
         spacing: step * (small ? 0.8 : 0.75),
       });
@@ -294,8 +294,7 @@ export default function ParticleNetwork({ wordRef }: { wordRef?: RefObject<HTMLE
         fin.x = fin.left + span * 0.68;
         fin.sink = 0;
       } else {
-        const t = now - FIN_START;
-        if (t < 0) { fin.sink = 1; fin.x = fin.left + span * 0.2; return; }
+        const t = Math.max(0, now - FIN_START);
         const k = Math.floor(t / CYCLE);
         const c = t - k * CYCLE;
         fin.dir = k % 2 === 0 ? 1 : -1;
@@ -309,6 +308,8 @@ export default function ParticleNetwork({ wordRef }: { wordRef?: RefObject<HTMLE
           : c < RISE + GLIDE ? 0
           : c < RISE * 2 + GLIDE ? ease((c - RISE - GLIDE) / RISE)
           : 1;
+        // Before the first rise it waits under the water where it will surface.
+        if (now < FIN_START) fin.sink = 1;
       }
       const bob = still ? 0 : Math.sin(now * 0.0021) * fin.fh * 0.025;
       const depth = fin.sink * (fin.fh * 1.1 + 4);
@@ -316,8 +317,11 @@ export default function ParticleNetwork({ wordRef }: { wordRef?: RefObject<HTMLE
         if (d.kind !== 2) continue;
         d.hx = fin.x + fin.dir * d.lx * fin.fw;
         d.hy = fin.wl + d.ly * fin.fh + depth + bob;
-        if (still || fin.sink >= 1) { d.x = d.hx; d.y = d.hy; d.vx = 0; d.vy = 0; }
+        // Fin particles are made at the origin: put them home before they can
+        // show, or they fall in from the top of the screen.
+        if (still || fin.sink >= 1 || fin.fresh) { d.x = d.hx; d.y = d.hy; d.vx = 0; d.vy = 0; }
       }
+      fin.fresh = false;
       // The surface rises in a bow wave ahead of the fin and ripples behind it.
       const lift = (1 - fin.sink) * fin.fh;
       for (const w of water) {
