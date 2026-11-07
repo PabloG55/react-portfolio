@@ -37,6 +37,7 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
+            document.documentElement.classList.add('js');
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
               document.documentElement.classList.add('dark');
             }

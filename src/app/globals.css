@@ -43,6 +43,10 @@
 .dark .hero-word { color: var(--color-heading-muted-dark); }
 /* Once the canvas has drawn the word, it paints the glyphs; the text stays for screen readers and as the fallback. */
 .hero-word[data-built] { opacity: 0; }
+/* With JS, keep the fallback text hidden from first paint so it never shows and then vanishes while the particles assemble.
+   Failsafe: if the canvas has not built the word after 2.5s, the text fades in. Without JS the text shows as normal. */
+.js .hero-word:not([data-built]) { opacity: 0; animation: hero-word-failsafe .3s ease 2.5s forwards; }
+@keyframes hero-word-failsafe { to { opacity: 1; } }
 .hero-foot { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 32px; row-gap: 24px; align-items: end; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--color-border-light); }
 .dark .hero-foot { border-color: #1c1f24; }
 .hero-foot .hero-lede { grid-column: 1 / span 12; margin: 0; }
