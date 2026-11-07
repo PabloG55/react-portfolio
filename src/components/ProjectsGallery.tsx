@@ -113,6 +113,16 @@ const frontendProjects: Project[] = [
     video: "/projects/isa-cruz-art/demo.mp4", poster: "/projects/isa-cruz-art/poster.webp", gif: "/projects/isa-cruz-art/demo.gif",
     caption: "Live website · scrolling landing-page walkthrough",
   },
+  {
+    id: "sos-galapagos", name: "SOS Galápagos", category: "Frontend · Relief directory", status: "Live website",
+    subtitle: "Where to donate after the floods in Santa Cruz, Galápagos.",
+    description: "A Spanish-first, phone-first directory of where to give after the 30–31 October 2026 floods in Santa Cruz, with an English version at /en/. Full-bleed black-and-white photos, each credited to its photographer, reveal as you scroll, then tabs sort the directory by how you give.",
+    detail: "Bank transfers are grouped by cause, giving from abroad covers card, PayPal, and SWIFT, and supply drop-off points are listed by city with Google Maps buttons. It lists organizations only, never personal accounts. Every entry carries its source and date, with numbers transcribed from a local news reel and never guessed. The language switch keeps your place on the page, and photos are served as AVIF, WebP, or JPEG.",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui", "Vercel"],
+    href: "https://sosgalapagos.pablogarces.dev/", linkLabel: "Visit website",
+    video: "/projects/sos-galapagos/demo.mp4", poster: "/projects/sos-galapagos/poster.webp", gif: "/projects/sos-galapagos/demo.gif",
+    caption: "Live website · scrolling landing-page walkthrough",
+  },
 ];
 
 function ProjectMedia({ project }: { project: Project }) {
