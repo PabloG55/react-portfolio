@@ -42,7 +42,8 @@
 .home-type { --font-display: var(--font-brand), "Barlow", sans-serif; }
 .home-type .hero-display { font-weight: 800; letter-spacing: -.025em; line-height: .96; margin-left: -.03em; }
 .dark .hero-display { color: #fff; }
-.hero-word { color: var(--color-heading-muted-light); }
+/* The word is a toy: hovering it scatters the particles, so it gets a pointer, sized to the word and not the whole row. */
+.hero-word { color: var(--color-heading-muted-light); width: fit-content; cursor: pointer; }
 .dark .hero-word { color: var(--color-heading-muted-dark); }
 /* Once the canvas has drawn the word, it paints the glyphs; the text stays for screen readers and as the fallback. */
 .hero-word[data-built] { opacity: 0; }
