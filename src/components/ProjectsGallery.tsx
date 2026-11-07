@@ -130,7 +130,7 @@ export default function ProjectsGallery({ t, kind = "projects" }: { t: Dict; kin
     <article id={`project-${project.id}`} className="project-row grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
       <div className={`order-2 ${index % 2 === 0 ? "lg:order-1" : "lg:order-2"}`}>
         <div className="project-meta"><span>{copy.category}</span><span className={`project-status ${project.live ? "status-live" : ""}`}>{project.locked && <LockKeyhole size={11} />}{copy.status}</span></div>
-        <h3 className="text-4xl md:text-5xl font-display font-medium tracking-tight text-gray-900 dark:text-white mb-4">{project.name}</h3>
+        <h3 className="text-4xl md:text-5xl font-display font-medium tracking-tight text-primary mb-4">{project.name}</h3>
         <p className="text-xl text-gray-700 dark:text-gray-300 mb-5 leading-snug">{copy.subtitle}</p>
         <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-4">{copy.description}</p>
         <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-6">{copy.detail}</p>
