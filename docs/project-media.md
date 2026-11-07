@@ -31,7 +31,6 @@ included.
 | --- | --- |
 | [Dra. Paula Garcés](https://drapaulagarces.vercel.app/) | Actual desktop landing page, scrolling through the hero, philosophy, treatments, About, and contact sections. |
 | [Isa Cruz Art](https://isacruzart.com/) | Actual desktop landing page, scrolling through the hero, creative disciplines, selected projects, and footer. |
-| [SOS Galápagos](https://sosgalapagos.pablogarces.dev/) | Actual Spanish desktop landing page (added November 7, 2026), scrolling through the hero, the three credited photo stories, and into the "Dónde donar" transfer list. Copy checked against the project's README and operating notes. The GIF uses a 32-grey palette to stay near the other two in size. |
 
 Each preview has a silent MP4, an animated GIF, and a WebP poster in
 `public/projects/paula-garces/` or `public/projects/isa-cruz-art/`. The public
