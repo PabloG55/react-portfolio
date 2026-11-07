@@ -141,10 +141,16 @@ export default function ParticleNetwork({ wordRef }: { wordRef?: RefObject<HTMLE
       // top-left corner to about the bottom of the upper bowl. Proportions are
       // measured from logo2: the cut spans 7%-68% of the cap height, valleys
       // reach 65% into the stem, tips stop 8% in, six teeth.
-      const bm = o.measureText(text[0]);
-      const bx = Math.round(pad - bm.actualBoundingBoxLeft);
-      const capH = bm.actualBoundingBoxAscent;
-      const by = baseline - capH;
+      // The stem is found in the rendered pixels, not with measureText: Safari
+      // reports the B's actualBoundingBoxLeft as 0 instead of its side bearing,
+      // which put the whole cut to the left of the stem on iPhones.
+      const base = Math.round(baseline);
+      let bx = 0;
+      while (bx < W - 1 && !colInk(bx, 0, base)) bx++;
+      let top = 0;
+      while (top < base && !inkAt(bx + 1, top)) top++;
+      const by = top;
+      const capH = baseline - by;
       const row = Math.round(by + capH * 0.3);
       let sw = 0;
       while (sw < fontSize && inkAt(bx + sw + 1, row)) sw++;
@@ -168,6 +174,8 @@ export default function ParticleNetwork({ wordRef }: { wordRef?: RefObject<HTMLE
         }
         return -Infinity;
       };
+      const solid = data;
+      const inSolid = (x: number, y: number) => solid[(Math.round(y) * W + Math.round(x)) * 4 + 3] >= 140;
       o.save();
       o.globalCompositeOperation = "destination-out";
       o.beginPath();
@@ -190,7 +198,8 @@ export default function ParticleNetwork({ wordRef }: { wordRef?: RefObject<HTMLE
         }
       }
       // The serrated edge is traced at the grid's own spacing so the teeth
-      // stay sharp without reading as a drawn line.
+      // stay sharp without reading as a drawn line. Only points inside the
+      // letter are kept, so no tooth ever sits outside the stem.
       for (let i = 1; i < zig.length; i++) {
         const [x0, y0] = zig[i - 1];
         const [x1, y1] = zig[i];
@@ -198,7 +207,7 @@ export default function ParticleNetwork({ wordRef }: { wordRef?: RefObject<HTMLE
         for (let j = i === 1 ? 0 : 1; j <= n; j++) {
           const x = x0 + ((x1 - x0) * j) / n;
           const y = y0 + ((y1 - y0) * j) / n;
-          if (x >= zig[0][0] + 1) next.push(makeDot(originX + x, originY + y, 0, 0, assemble, false));
+          if (inSolid(x, y)) next.push(makeDot(originX + x, originY + y, 0, 0, assemble, false));
         }
       }
 
