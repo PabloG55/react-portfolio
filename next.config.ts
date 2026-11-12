@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
           "/": `/${app}`,
           "/privacy": `/docs/policy/${app}`,
           "/support": `/docs/support/${app}`,
+          "/terms": `/docs/terms/${app}`,
         };
         if (app === "trainpilot") pages["/delete-account"] = "/docs/delete-account/trainpilot";
         return Object.entries(pages).map(([source, destination]) => ({
