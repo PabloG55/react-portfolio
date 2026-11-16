@@ -21,15 +21,39 @@ export default function RecetaiDeletion() {
             />
             <h1 className={styles.h1}>Data Deletion Request</h1>
           </div>
-          <p>Last updated: July 18, 2026</p>
+          <p>Last updated: November 16, 2026</p>
         </header>
 
         <section>
+          <h2 className={styles.h2}>Delete your account in the app</h2>
           <p style={{ fontSize: '1.1rem', marginBottom: '20px' }}>
-            To request deletion of your recetAI account and all associated data, please email <strong>pgarcesb1@gmail.com</strong> with the subject <strong>&apos;Account Deletion Request&apos;</strong> from the email address associated with your account.
+            Open recetAI, go to <strong>Profile &rarr; Delete account</strong> and confirm. Your account is
+            deleted immediately.
           </p>
-          <p style={{ fontSize: '1.1rem' }}>
-            Alternatively, you can instantly delete your account inside the app by going to <strong>Profile -&gt; Delete Account</strong>.
+
+          <h2 className={styles.h2}>Or ask us by email</h2>
+          <p style={{ fontSize: '1.1rem', marginBottom: '20px' }}>
+            Email <strong>pgarcesb1@gmail.com</strong> with the subject{' '}
+            <strong>&apos;Account Deletion Request&apos;</strong> from the email address you signed up with.
+            We delete the account within 30 days and reply to confirm.
+          </p>
+
+          <h2 className={styles.h2}>What is deleted</h2>
+          <p style={{ marginBottom: '12px' }}>Everything stored with your recetAI account:</p>
+          <ul style={{ marginBottom: '20px', paddingLeft: '1.25rem', lineHeight: 1.7 }}>
+            <li>your account: email address, name and sign-in details</li>
+            <li>your recipes, personal notes, ratings and cookbooks</li>
+            <li>your meal plans, meal prep sessions, portions and grocery list</li>
+            <li>every share link you created (they stop working)</li>
+            <li>any connection to Claude you set up</li>
+          </ul>
+
+          <h2 className={styles.h2}>What is kept, and for how long</h2>
+          <p style={{ marginBottom: '20px' }}>
+            Nothing is kept on purpose. Copies of the deleted data can remain in our database
+            provider&apos;s automatic backups until those backups expire, which happens within 30 days.
+            A recipe somebody else already saved from a link you shared is their copy, and stays in their
+            account.
           </p>
         </section>
 
